@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - oraclejdk15
+before_script:
+  - '[ "${TRAVIS_NODE_VERSION}" != "0.8" ] || npm install -g npm@1.4.28'
+  - npm install -g npm@latest
+  - npm install
+script:
+  - mvn clean install
+  - npm testnp
