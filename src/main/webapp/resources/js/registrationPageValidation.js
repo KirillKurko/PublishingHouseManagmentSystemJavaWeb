@@ -1,4 +1,4 @@
-window.load = function() {}
+const {isValidUsername} = require("validators");
 
 const form = document.getElementById("form");
 const username = document.getElementById("username");
@@ -18,8 +18,6 @@ function validateInputFields() {
     const confirmedPasswordValue = confirmedPassword.value.trim();
 
     validateUsername(usernameValue);
-    validateEmail(emailValue);
-    validatePassword();
 }
 
 function validateUsername(usernameValue) {
@@ -31,9 +29,8 @@ function validateUsername(usernameValue) {
     }
 }
 
-function isValidUsername(usernameValue) {
-    return "^[a-z0-9_-]{4,20}$".test(usernameValue);
-}
+function setSuccessFor(field) {}
 
+function setErrorFor(field, message) {}
 
 module.exports = {isValidUsername};
