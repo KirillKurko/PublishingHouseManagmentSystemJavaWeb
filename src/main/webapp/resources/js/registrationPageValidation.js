@@ -1,8 +1,8 @@
-const form = document.getElementById("form");
-const username = document.getElementById("username");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const confirmedPassword = document.getElementById("confirmedPassword");
+const form = window.document.getElementById("form");
+const username = window.document.getElementById("username");
+const email = window.document.getElementById("email");
+const password = window.document.getElementById("password");
+const confirmedPassword = window.document.getElementById("confirmedPassword");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
