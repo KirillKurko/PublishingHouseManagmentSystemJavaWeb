@@ -1,3 +1,5 @@
+const validators = require('validators.js')
+
 const form = document.getElementById("form");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
@@ -6,65 +8,33 @@ const confirmedPassword = document.getElementById("confirmedPassword");
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    validateInputFields();
+    if (validateInputFields() === true) {
+        form.submit();
+    }
 });
 
 function validateInputFields() {
-    const usernameValue = username.value.trim();
-    const emailValue = email.value.trim();
-    const passwordValue = password.value.trim();
-    const confirmedPasswordValue = confirmedPassword.value.trim();
-
-    validateUsername(usernameValue);
-    validateEmail(emailValue);
-    validatePassword(passwordValue);
-    validateConfirmedPassword(confirmedPasswordValue, passwordValue);
+    const isUsernameValid = validateField(username, validators.usernameValidator, 'Invalid username');
+    const isEmailValid = validateField(email, validators.emailValidator, 'Invalid email');
+    const isPasswordValid = validateField(password, validators.passwordValidator, 'Password cannot be blank');
+    const isConfirmedPasswordValid = validateField(confirmedPassword, confirmedPasswordValidator, 'Passwords does not match');
+    return isUsernameValid && isEmailValid && isPasswordValid && isConfirmedPasswordValid;
 }
 
-function validateUsername(usernameValue) {
-    if (isValidUsername(usernameValue)) {
-        setSuccessFor(username);
+function validateField(field, validator, errorMessage) {
+    const value = field.value.trim();
+    if (validator(value)) {
+        setSuccessFor(field);
+        return true;
     }
     else {
-        setErrorFor(username, 'Invalid username');
+        setErrorFor(field, errorMessage);
+        return false;
     }
 }
 
-function validateEmail(emailValue) {
-    if (isValidEmail(emailValue)) {
-        setSuccessFor(email);
-    }
-    else {
-        setErrorFor(email, 'Invalid email');
-    }
-}
-
-function validatePassword(passwordValue) {
-    if (passwordValue !== "") {
-        setSuccessFor(password);
-    }
-    else {
-        setErrorFor(password, "Password cannot be blank");
-    }
-}
-
-function validateConfirmedPassword(confirmedPasswordValue, passwordValue) {
-    if (confirmedPasswordValue === passwordValue && confirmedPasswordValue !== "") {
-        setSuccessFor(confirmedPassword);
-    }
-    else {
-        setErrorFor(confirmedPassword, "Passwords does not match");
-    }
-}
-
-function isValidUsername(usernameValue) {
-    let regex = new RegExp("^[a-z0-9_-]{4,20}$");
-    return regex.test(usernameValue);
-}
-
-function isValidEmail(emailValue) {
-    let regex = new RegExp("^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
-    return regex.test(emailValue);
+function confirmedPasswordValidator(confirmedPasswordValue, passwordValue) {
+    return confirmedPasswordValue === passwordValue && confirmedPasswordValue !== '';
 }
 
 function setErrorFor(input, message) {

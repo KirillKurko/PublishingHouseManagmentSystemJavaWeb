@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,31 +12,31 @@
         <div class="header">
             <h2>Create Account</h2>
         </div>
-        <form id="form" class="form">
+        <form id="form" class="form" action="testServlet" method="post">
             <div class="form-control">
                 <label for="username">Username</label>
-                <input type="text" placeholder="Username" id="username" />
+                <input type="text" placeholder="Username" name="username" id="username" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <label for="username">Email</label>
-                <input type="text" placeholder="Email" id="email" />
+                <label for="email">Email</label>
+                <input type="text" placeholder="Email" name="email" id="email" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <label for="username">Password</label>
-                <input type="password" placeholder="Password" id="password"/>
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name="password" id="password"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <label for="username">Confirm Password</label>
-                <input type="password" placeholder="Password" id="confirmedPassword"/>
+                <label for="confirmedPassword">Confirm Password</label>
+                <input type="password" placeholder="Password" name="confirmedPassword" id="confirmedPassword"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
