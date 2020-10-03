@@ -20,6 +20,6 @@ describe("Validate username test", function() {
     });
 
     it("valid password with letters, symbols and digits", function() {
-        expect(usernameValidator("correct-password_1234")).toBe(true);
+        expect(usernameValidator("correct_12-34")).toBe(true);
     });
 })
