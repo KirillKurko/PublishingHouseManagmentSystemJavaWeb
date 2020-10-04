@@ -2,7 +2,7 @@ const validators = require("../src/main/webapp/resources/js/validators.js");
 
 const usernameValidator = validators.usernameValidator;
 
-describe("Validate username test", function() {
+describe("Username validator tests", function() {
     it("valid password contains only lowercase letters", function() {
         expect(usernameValidator("username")).toBe(true);
     });
