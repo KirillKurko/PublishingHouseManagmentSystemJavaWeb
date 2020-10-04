@@ -20,6 +20,6 @@ describe("email validator tests", function() {
     });
 
     it("invalid email with @ first", function() {
-        expect(emailValidator("@gmail.com")).toBe(true);
+        expect(emailValidator("@gmail.com")).toBe(false);
     });
 })
