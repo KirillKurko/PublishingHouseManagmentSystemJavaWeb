@@ -9,6 +9,15 @@ public class Employee {
     private double salary;
     private int userID;
 
+    public Employee() {
+        id = 0;
+        name = "";
+        surname = "";
+        experience = 0;
+        salary = 0.0;
+        userID = 0;
+    }
+
     public Employee(int id, String name, String surname, int experience, double salary, int userID) {
         this.id = id;
         this.name = name;
