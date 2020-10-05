@@ -4,26 +4,30 @@ public class Publisher extends AdvancedEmployee {
 
     private int id;
     private double finances;
-    private int employeeID;
 
     public Publisher() {
         super();
         id = 0;
         finances = 0.0;
-        employeeID = 0;
     }
 
     public Publisher(int id, double finances, int employeeID, Employee employee) {
         super(employee);
         this.id = id;
         this.finances = finances;
-        this.employeeID = employeeID;
     }
 
     public Publisher(double finances, int employeeID, Employee employee) {
         super(employee);
         this.finances = finances;
-        this.employeeID = employeeID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getFinances() {
@@ -35,10 +39,10 @@ public class Publisher extends AdvancedEmployee {
     }
 
     public int getEmployeeID() {
-        return employeeID;
+        return employee.getId();
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeID(int id) {
+        employee.setId(id);
     }
 }
