@@ -1,6 +1,6 @@
 package beans.employees;
 
-public class Employee {
+public class Employee implements EmployeeInterface {
 
     private int id;
     private String name;
@@ -35,50 +35,62 @@ public class Employee {
         this.userID = userID;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getSurname() {
         return surname;
     }
 
+    @Override
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    @Override
     public int getExperience() {
         return experience;
     }
 
+    @Override
     public void setExperience(int experience) {
         this.experience = experience;
     }
 
+    @Override
     public double getSalary() {
         return salary;
     }
 
+    @Override
     public void setSalary(double salary) {
         this.salary = salary;
     }
 
+    @Override
     public int getUserID() {
         return userID;
     }
 
+    @Override
     public void setUserID(int userID) {
         this.userID = userID;
     }
