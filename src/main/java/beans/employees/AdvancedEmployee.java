@@ -13,16 +13,6 @@ abstract public class AdvancedEmployee implements EmployeeInterface {
     }
 
     @Override
-    public int getId() {
-        return employee.getId();
-    }
-
-    @Override
-    public void setId(int id) {
-        employee.setId(id);
-    }
-
-    @Override
     public String getName() {
         return employee.getName();
     }

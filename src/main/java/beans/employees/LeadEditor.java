@@ -1,25 +1,31 @@
 package beans.employees;
 
-public class ChiefEditor extends AdvancedEmployee {
+public class LeadEditor extends AdvancedEmployee {
 
     private int id;
     private int finishedProjectsAmount;
+    private String mainGenre;
 
-    public ChiefEditor() {
+    public LeadEditor() {
         super();
         id = 0;
         finishedProjectsAmount = 0;
+        mainGenre = "";
     }
 
-    public ChiefEditor(int id, int finishedProjectsAmount, Employee employee) {
+    public LeadEditor(int id, int finishedProjectsAmount, String mainGenre, Employee employee) {
         super(employee);
         this.id = id;
         this.finishedProjectsAmount = finishedProjectsAmount;
+        this.mainGenre = mainGenre;
+        this.employee = employee;
     }
 
-    public ChiefEditor(int finishedProjectsAmount, Employee employee) {
+    public LeadEditor(int finishedProjectsAmount, String mainGenre, Employee employee) {
         super(employee);
         this.finishedProjectsAmount = finishedProjectsAmount;
+        this.mainGenre = mainGenre;
+        this.employee = employee;
     }
 
     public int getId() {
@@ -36,6 +42,14 @@ public class ChiefEditor extends AdvancedEmployee {
 
     public void setFinishedProjectsAmount(int finishedProjectsAmount) {
         this.finishedProjectsAmount = finishedProjectsAmount;
+    }
+
+    public String getMainGenre() {
+        return mainGenre;
+    }
+
+    public void setMainGenre(String mainGenre) {
+        this.mainGenre = mainGenre;
     }
 
     public int getEmployeeID() {
