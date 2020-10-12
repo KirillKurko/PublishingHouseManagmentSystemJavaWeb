@@ -22,14 +22,14 @@ public class PublisherBeanSettersTests {
     }
 
     @Test
-    public void testSetFinishedProjectsAmount() throws NoSuchFieldException, IllegalAccessException {
+    public void testSetFinances() throws NoSuchFieldException, IllegalAccessException {
 
-        final Publisher leadEditor = new Publisher();
+        final Publisher publisher = new Publisher();
 
-        leadEditor.setFinances(10.2);
+        publisher.setFinances(10.2);
 
-        final Field finances = leadEditor.getClass().getDeclaredField("finances");
+        final Field finances = publisher.getClass().getDeclaredField("finances");
         finances.setAccessible(true);
-        assertEquals("Fields doesn't match", 10.2, finances.get(leadEditor));
+        assertEquals("Fields doesn't match", 10.2, finances.get(publisher));
     }
 }

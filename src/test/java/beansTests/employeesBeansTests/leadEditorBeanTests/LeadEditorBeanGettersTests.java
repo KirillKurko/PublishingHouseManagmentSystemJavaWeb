@@ -39,6 +39,6 @@ public class LeadEditorBeanGettersTests {
         mainGenre.setAccessible(true);
         mainGenre.set(leadEditor, "horror");
 
-        assertEquals("field wasn't retrieved properly", leadEditor.getSurname(), "horror");
+        assertEquals("field wasn't retrieved properly", leadEditor.getMainGenre(), "horror");
     }
 }

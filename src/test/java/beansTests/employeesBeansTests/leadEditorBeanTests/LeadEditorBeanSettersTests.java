@@ -30,7 +30,7 @@ public class LeadEditorBeanSettersTests {
 
         final Field finishedProjectsAmount = leadEditor.getClass().getDeclaredField("finishedProjectsAmount");
         finishedProjectsAmount.setAccessible(true);
-        assertEquals("Fields doesn't match", "name", finishedProjectsAmount.get(leadEditor));
+        assertEquals("Fields doesn't match", 10, finishedProjectsAmount.get(leadEditor));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class LeadEditorBeanSettersTests {
 
         final Field mainGenre = leadEditor.getClass().getDeclaredField("mainGenre");
         mainGenre.setAccessible(true);
-        assertEquals("Fields doesn't match", "surname", mainGenre.get(leadEditor));
+        assertEquals("Fields doesn't match", "science", mainGenre.get(leadEditor));
     }
 
 }

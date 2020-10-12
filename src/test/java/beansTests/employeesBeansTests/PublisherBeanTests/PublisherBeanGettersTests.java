@@ -24,7 +24,7 @@ public class PublisherBeanGettersTests {
     public void testGetFinances() throws NoSuchFieldException, IllegalAccessException {
 
         final Publisher publisher = new Publisher();
-        final Field finances = publisher.getClass().getDeclaredField("finishedProjectsAmount");
+        final Field finances = publisher.getClass().getDeclaredField("finances");
         finances.setAccessible(true);
         finances.set(publisher, 10.2);
 
