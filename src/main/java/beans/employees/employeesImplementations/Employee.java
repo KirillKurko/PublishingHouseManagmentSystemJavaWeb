@@ -1,4 +1,6 @@
-package beans.employees;
+package beans.employees.employeesImplementations;
+
+import beans.employees.EmployeeInterface;
 
 public class Employee implements EmployeeInterface {
 

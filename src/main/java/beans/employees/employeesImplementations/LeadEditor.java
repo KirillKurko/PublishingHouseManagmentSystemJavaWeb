@@ -1,6 +1,6 @@
-package beans.employees;
+package beans.employees.employeesImplementations;
 
-public class LeadEditor extends AdvancedEmployee {
+public class LeadEditor extends Employee {
 
     private int id;
     private int finishedProjectsAmount;
@@ -13,25 +13,33 @@ public class LeadEditor extends AdvancedEmployee {
         mainGenre = "";
     }
 
-    public LeadEditor(int id, int finishedProjectsAmount, String mainGenre, Employee employee) {
-        super(employee);
+    public LeadEditor(int id, int finishedProjectsAmount, String mainGenre,
+                      int employeeID,
+                      String name, String surname,
+                      int experience, double salary,
+                      int userID) {
+        super(employeeID, name, surname, experience, salary, userID);
         this.id = id;
         this.finishedProjectsAmount = finishedProjectsAmount;
         this.mainGenre = mainGenre;
-        this.employee = employee;
     }
 
-    public LeadEditor(int finishedProjectsAmount, String mainGenre, Employee employee) {
-        super(employee);
+    public LeadEditor(int finishedProjectsAmount, String mainGenre,
+                      int employeeID,
+                      String name, String surname,
+                      int experience, double salary,
+                      int userID) {
+        super(employeeID, name, surname, experience, salary, userID);
         this.finishedProjectsAmount = finishedProjectsAmount;
         this.mainGenre = mainGenre;
-        this.employee = employee;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -53,10 +61,10 @@ public class LeadEditor extends AdvancedEmployee {
     }
 
     public int getEmployeeID() {
-        return employee.getId();
+        return super.getId();
     }
 
     public void setEmployeeID(int id) {
-        employee.setId(id);
+        super.setId(id);
     }
 }

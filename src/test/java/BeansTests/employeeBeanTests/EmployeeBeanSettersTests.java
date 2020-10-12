@@ -1,6 +1,6 @@
 package BeansTests.employeeBeanTests;
 
-import beans.employees.Employee;
+import beans.employees.employeesImplementations.Employee;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 import java.lang.reflect.Field;
