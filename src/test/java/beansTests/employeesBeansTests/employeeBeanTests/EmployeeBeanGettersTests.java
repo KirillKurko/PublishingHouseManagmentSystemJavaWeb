@@ -1,4 +1,4 @@
-package BeansTests.employeeBeanTests;
+package beansTests.employeesBeansTests.employeeBeanTests;
 
 import beans.employees.employeesImplementations.Employee;
 import org.junit.jupiter.api.Test;
