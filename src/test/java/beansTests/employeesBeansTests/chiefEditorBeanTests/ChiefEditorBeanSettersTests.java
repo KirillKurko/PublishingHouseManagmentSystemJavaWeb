@@ -31,6 +31,6 @@ public class ChiefEditorBeanSettersTests {
 
         final Field finishedProjectsAmount = chiefEditor.getClass().getDeclaredField("finishedProjectsAmount");
         finishedProjectsAmount.setAccessible(true);
-        assertEquals("Fields doesn't match", "name", finishedProjectsAmount.get(chiefEditor));
+        assertEquals("Fields doesn't match", 10, finishedProjectsAmount.get(chiefEditor));
     }
 }
