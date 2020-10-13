@@ -1,6 +1,6 @@
 package beansTests.projectBeansTests.authorBeanTests;
 
-import beans.employees.project.Author;
+import beans.project.Author;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;

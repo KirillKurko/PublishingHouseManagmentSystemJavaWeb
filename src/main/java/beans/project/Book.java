@@ -1,4 +1,4 @@
-package beans.employees.project;
+package beans.project;
 
 import java.util.ArrayList;
 import java.util.List;

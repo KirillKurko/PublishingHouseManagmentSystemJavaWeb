@@ -1,4 +1,4 @@
-package beans.employees.project;
+package beans.project;
 
 public class Author {
 
