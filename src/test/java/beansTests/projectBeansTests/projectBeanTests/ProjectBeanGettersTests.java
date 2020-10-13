@@ -3,7 +3,6 @@ package beansTests.projectBeansTests.projectBeanTests;
 import beans.employees.employeesImplementations.LeadEditor;
 import beans.project.Book;
 import beans.project.Project;
-import beans.project.Review;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;

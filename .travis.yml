@@ -1,6 +1,8 @@
 language: java
 jdk:
   - oraclejdk15
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t 970557cc-f8d1-445a-bb03-d6cde92d62f2
 before_script:
   - '[ "${TRAVIS_NODE_VERSION}" != "0.8" ] || npm install -g npm@1.4.28'
   - npm install -g npm@latest
