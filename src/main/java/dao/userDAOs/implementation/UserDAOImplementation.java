@@ -1,7 +1,7 @@
-package dao.implementation;
+package dao.userDAOs.implementation;
 
 import beans.employees.User;
-import dao.interfaces.UserDAO;
+import dao.userDAOs.interfaces.UserDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.Connection;
