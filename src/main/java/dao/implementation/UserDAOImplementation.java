@@ -19,7 +19,7 @@ public class UserDAOImplementation implements UserDAO {
     @Override
     public void insertUser(User user) {
         try (Connection connection = DatabaseUtility.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getEmail());
@@ -43,6 +43,7 @@ public class UserDAOImplementation implements UserDAO {
             preparedStatement.setString(4, user.getHash());
             preparedStatement.setBoolean(5, user.isActivated());
             preparedStatement.setInt(6, user.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -74,7 +75,16 @@ public class UserDAOImplementation implements UserDAO {
 
     @Override
     public boolean deleteUser(int id) {
-        return false;
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 
 }
