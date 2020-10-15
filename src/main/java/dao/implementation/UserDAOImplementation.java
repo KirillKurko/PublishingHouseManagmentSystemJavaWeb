@@ -32,8 +32,21 @@ public class UserDAOImplementation implements UserDAO {
     }
 
     @Override
-    public void updateUser(User user) {
-
+    public boolean updateUser(User user) {
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getHash());
+            preparedStatement.setBoolean(5, user.isActivated());
+            preparedStatement.setInt(6, user.getId());
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override

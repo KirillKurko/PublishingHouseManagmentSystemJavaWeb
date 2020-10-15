@@ -6,7 +6,7 @@ public interface UserDAO {
 
     void insertUser(User user);
 
-    void updateUser(User user);
+    boolean updateUser(User user);
 
     User selectUser(int id);
 
