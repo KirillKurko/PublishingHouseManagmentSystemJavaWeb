@@ -74,6 +74,15 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
     @Override
     public boolean deleteEmployee(int id) {
-        return false;
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 }
