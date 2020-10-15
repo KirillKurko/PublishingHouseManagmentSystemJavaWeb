@@ -2,13 +2,13 @@ package dao.interfaces;
 
 import beans.employees.User;
 
-public interface userDAO {
+public interface UserDAO {
 
     void insertUser(User user);
 
     void updateUser(User user);
 
-    public User selectUser(int id);
+    User selectUser(int id);
 
-    public boolean deleteUser(int id);
+    boolean deleteUser(int id);
 }
