@@ -1,12 +1,12 @@
 package dao.userDAOs.implementation;
 
-import beans.employees.User;
 import beans.employees.employeesImplementations.Employee;
 import dao.userDAOs.interfaces.EmployeeDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EmployeeDAOImplementation implements EmployeeDAO {
@@ -52,8 +52,24 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
     }
 
     @Override
-    public User selectEmployee(int id) {
-        return null;
+    public Employee selectEmployee(int id) {
+        Employee employee = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String surname = resultSet.getString("surname");
+                int experience = resultSet.getInt("experience");
+                double salary = resultSet.getDouble("salary");
+                int userID = resultSet.getInt("userID");
+                employee = new Employee(id, name, surname, experience, salary, userID);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return employee;
     }
 
     @Override

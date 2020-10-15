@@ -9,7 +9,7 @@ public interface EmployeeDAO {
 
     boolean updateEmployee(Employee employee);
 
-    User selectEmployee(int id);
+    Employee selectEmployee(int id);
 
     boolean deleteEmployee(int id);
 }
