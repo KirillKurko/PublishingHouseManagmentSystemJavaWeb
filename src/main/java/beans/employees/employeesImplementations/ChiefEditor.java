@@ -26,7 +26,7 @@ public class ChiefEditor extends Employee {
                        String name, String surname,
                        int experience, double salary,
                        int userID) {
-        super(name, surname, experience, salary, userID);
+        super(employeeID, name, surname, experience, salary, userID);
         this.finishedProjectsAmount = finishedProjectsAmount;
     }
 

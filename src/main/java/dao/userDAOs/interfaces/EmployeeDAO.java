@@ -1,6 +1,5 @@
 package dao.userDAOs.interfaces;
 
-import beans.employees.User;
 import beans.employees.employeesImplementations.Employee;
 
 public interface EmployeeDAO {
