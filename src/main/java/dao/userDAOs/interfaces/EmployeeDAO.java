@@ -4,7 +4,7 @@ import beans.employees.employeesImplementations.Employee;
 
 public interface EmployeeDAO {
 
-    void insertEmployee(Employee employee);
+    int insertEmployee(Employee employee);
 
     boolean updateEmployee(Employee employee);
 

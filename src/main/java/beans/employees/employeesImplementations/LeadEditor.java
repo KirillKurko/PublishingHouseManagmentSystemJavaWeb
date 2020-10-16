@@ -1,45 +1,37 @@
 package beans.employees.employeesImplementations;
 
-public class LeadEditor extends Employee {
+public class LeadEditor {
 
     private int id;
     private int finishedProjectsAmount;
     private String mainGenre;
+    private int employeeID;
 
     public LeadEditor() {
         super();
         id = 0;
         finishedProjectsAmount = 0;
         mainGenre = "";
+        employeeID = 0;
     }
 
-    public LeadEditor(int id, int finishedProjectsAmount, String mainGenre,
-                      int employeeID,
-                      String name, String surname,
-                      int experience, double salary,
-                      int userID) {
-        super(employeeID, name, surname, experience, salary, userID);
+    public LeadEditor(int id, int finishedProjectsAmount, String mainGenre, int employeeID) {
         this.id = id;
         this.finishedProjectsAmount = finishedProjectsAmount;
         this.mainGenre = mainGenre;
+        this.employeeID = employeeID;
     }
 
-    public LeadEditor(int finishedProjectsAmount, String mainGenre,
-                      int employeeID,
-                      String name, String surname,
-                      int experience, double salary,
-                      int userID) {
-        super(employeeID, name, surname, experience, salary, userID);
+    public LeadEditor(int finishedProjectsAmount, String mainGenre, int employeeID) {
         this.finishedProjectsAmount = finishedProjectsAmount;
         this.mainGenre = mainGenre;
+        this.employeeID = employeeID;
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -61,10 +53,10 @@ public class LeadEditor extends Employee {
     }
 
     public int getEmployeeID() {
-        return super.getId();
+        return employeeID;
     }
 
-    public void setEmployeeID(int id) {
-        super.setId(id);
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
 }

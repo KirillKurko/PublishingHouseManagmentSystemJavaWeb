@@ -1,41 +1,33 @@
 package beans.employees.employeesImplementations;
 
-public class ChiefEditor extends Employee {
+public class ChiefEditor {
 
     private int id;
     private int finishedProjectsAmount;
+    private int employeeID;
 
     public ChiefEditor() {
         super();
         id = 0;
         finishedProjectsAmount = 0;
+        employeeID = 0;
     }
 
-    public ChiefEditor(int id, int finishedProjectsAmount,
-                       int employeeID,
-                       String name, String surname,
-                       int experience, double salary,
-                       int userID) {
-        super(employeeID, name, surname, experience, salary, userID);
+    public ChiefEditor(int id, int finishedProjectsAmount, int employeeID) {
         this.id = id;
         this.finishedProjectsAmount = finishedProjectsAmount;
+        this.employeeID = employeeID;
     }
 
-    public ChiefEditor(int finishedProjectsAmount,
-                       int employeeID,
-                       String name, String surname,
-                       int experience, double salary,
-                       int userID) {
-        super(employeeID, name, surname, experience, salary, userID);
+    public ChiefEditor(int finishedProjectsAmount, int employeeID) {
         this.finishedProjectsAmount = finishedProjectsAmount;
+        this.employeeID = employeeID;
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -49,10 +41,10 @@ public class ChiefEditor extends Employee {
     }
 
     public int getEmployeeID() {
-        return super.getId();
+        return employeeID;
     }
 
-    public void setEmployeeID(int id) {
-        super.setId(id);
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
 }

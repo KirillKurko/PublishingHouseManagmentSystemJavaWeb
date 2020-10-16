@@ -4,10 +4,7 @@ import beans.employees.User;
 import dao.userDAOs.interfaces.UserDAO;
 import utilities.DatabaseUtility;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserDAOImplementation implements UserDAO {
 
@@ -17,19 +14,25 @@ public class UserDAOImplementation implements UserDAO {
     private static final String DELETE_USER = "DELETE FROM User WHERE id = ?;";
 
     @Override
-    public void insertUser(User user) {
+    public int insertUser(User user) {
+        int id = 0;
         try (Connection connection = DatabaseUtility.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getHash());
             preparedStatement.setBoolean(5, user.isActivated());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
         }
+        return id;
     }
 
     @Override

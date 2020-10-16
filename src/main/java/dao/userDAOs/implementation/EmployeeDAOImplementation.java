@@ -4,10 +4,7 @@ import beans.employees.employeesImplementations.Employee;
 import dao.userDAOs.interfaces.EmployeeDAO;
 import utilities.DatabaseUtility;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class EmployeeDAOImplementation implements EmployeeDAO {
 
@@ -17,19 +14,25 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
     private static final String DELETE_EMPLOYEE = "DELETE FROM Employee WHERE id = ?;";
 
     @Override
-    public void insertEmployee(Employee employee) {
+    public int insertEmployee(Employee employee) {
+        int id = 0;
         try (Connection connection = DatabaseUtility.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_EMPLOYEE)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_EMPLOYEE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, employee.getSurname());
             preparedStatement.setInt(3, employee.getExperience());
             preparedStatement.setDouble(4, employee.getSalary());
             preparedStatement.setInt(5, employee.getUserID());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
         }
+        return id;
     }
 
     @Override

@@ -1,40 +1,33 @@
 package beans.employees.employeesImplementations;
 
-public class Publisher extends Employee {
+public class Publisher {
 
     private int id;
     private double finances;
+    private int employeeID;
 
     public Publisher() {
         super();
         id = 0;
         finances = 0.0;
+        employeeID = 0;
     }
 
-    public Publisher(int id, double finances,
-                     int employeeID,
-                     String name, String surname,
-                     int experience, double salary,
-                     int userID) {
-        super(employeeID, name, surname, experience, salary, userID);
+    public Publisher(int id, double finances, int employeeID) {
         this.id = id;
         this.finances = finances;
+        this.employeeID = employeeID;
     }
 
-    public Publisher(double finances, int employeeID,
-                     String name, String surname,
-                     int experience, double salary,
-                     int userID) {
-        super(employeeID, name, surname, experience, salary, userID);
+    public Publisher(double finances, int employeeID) {
         this.finances = finances;
+        this.employeeID = employeeID;
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -48,10 +41,10 @@ public class Publisher extends Employee {
     }
 
     public int getEmployeeID() {
-        return super.getId();
+        return employeeID;
     }
 
-    public void setEmployeeID(int id) {
-        super.setId(id);
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
 }

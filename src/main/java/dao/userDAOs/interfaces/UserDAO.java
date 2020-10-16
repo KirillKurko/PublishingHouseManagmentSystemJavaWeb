@@ -4,7 +4,7 @@ import beans.employees.User;
 
 public interface UserDAO {
 
-    void insertUser(User user);
+    int insertUser(User user);
 
     boolean updateUser(User user);
 

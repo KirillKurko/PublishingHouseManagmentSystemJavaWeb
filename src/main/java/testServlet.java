@@ -1,3 +1,7 @@
+import beans.employees.User;
+import dao.userDAOs.implementation.UserDAOImplementation;
+import dao.userDAOs.interfaces.UserDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
