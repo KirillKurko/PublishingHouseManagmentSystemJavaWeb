@@ -21,6 +21,7 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CHIEF_EDITOR, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, chiefEditor.getFinishedProjectsAmount());
             preparedStatement.setInt(2, chiefEditor.getEmployeeID());
+            preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next()) {
                 id = resultSet.getInt(1);
@@ -34,7 +35,18 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
 
     @Override
     public boolean updateChiefEditor(ChiefEditor chiefEditor) {
-        return false;
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CHIEF_EDITOR)) {
+            preparedStatement.setInt(1, chiefEditor.getFinishedProjectsAmount());
+            preparedStatement.setInt(1, chiefEditor.getEmployeeID());
+            preparedStatement.setInt(1, chiefEditor.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
