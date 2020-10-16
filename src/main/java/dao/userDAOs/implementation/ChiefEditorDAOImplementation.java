@@ -70,7 +70,7 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
     public boolean deleteChiefEditor(int id) {
         boolean rowDeleted = false;
         try (Connection connection = DatabaseUtility.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CHIEF_EDITOR)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CHIEF_EDITOR)) {
             preparedStatement.setInt(1, id);
             rowDeleted = preparedStatement.executeUpdate() > 0;
         }
