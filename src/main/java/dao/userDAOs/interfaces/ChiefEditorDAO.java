@@ -9,7 +9,7 @@ public interface ChiefEditorDAO {
 
     boolean updateChiefEditor(ChiefEditor chiefEditor);
 
-    Employee selectChiefEditor(int id);
+    ChiefEditor selectChiefEditor(int id);
 
     boolean deleteChiefEditor(int id);
 }

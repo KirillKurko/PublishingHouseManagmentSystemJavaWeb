@@ -1,7 +1,6 @@
 package dao.userDAOs.implementation;
 
 import beans.employees.employeesImplementations.ChiefEditor;
-import beans.employees.employeesImplementations.Employee;
 import dao.userDAOs.interfaces.ChiefEditorDAO;
 import utilities.DatabaseUtility;
 
@@ -50,8 +49,21 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
     }
 
     @Override
-    public Employee selectChiefEditor(int id) {
-        return null;
+    public ChiefEditor selectChiefEditor(int id) {
+        ChiefEditor chiefEditor = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CHIEF_EDITOR)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int finishedProjectsAmount = resultSet.getInt("finishedProjectsAmount");
+                int employeeID =  resultSet.getInt("employeeID");
+                chiefEditor = new ChiefEditor(id, finishedProjectsAmount, employeeID);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return chiefEditor;
     }
 
     @Override
