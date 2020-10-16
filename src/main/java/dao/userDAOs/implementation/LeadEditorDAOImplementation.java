@@ -35,7 +35,19 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
 
     @Override
     public boolean updateChiefEditor(LeadEditor chiefEditor) {
-        return false;
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_LEAD_EDITOR)) {
+            preparedStatement.setInt(1, chiefEditor.getFinishedProjectsAmount());
+            preparedStatement.setString(2, chiefEditor.getMainGenre());
+            preparedStatement.setInt(3, chiefEditor.getEmployeeID());
+            preparedStatement.setInt(4, chiefEditor.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
