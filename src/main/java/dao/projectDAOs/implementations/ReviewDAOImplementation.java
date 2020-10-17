@@ -72,6 +72,15 @@ public class ReviewDAOImplementation implements ReviewDAO  {
 
     @Override
     public boolean deleteReview(int id) {
-        return false;
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_REVIEW)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 }
