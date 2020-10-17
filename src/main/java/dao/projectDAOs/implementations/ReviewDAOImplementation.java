@@ -52,7 +52,22 @@ public class ReviewDAOImplementation implements ReviewDAO  {
 
     @Override
     public Review selectReview(int id) {
-        return null;
+        Review review = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_REVIEW)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int rating = resultSet.getInt("rating");
+                String description = resultSet.getString("description");
+                int bookID = resultSet.getInt("bookID");
+                review = new Review(id, rating, description, bookID);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return review;
     }
 
     @Override
