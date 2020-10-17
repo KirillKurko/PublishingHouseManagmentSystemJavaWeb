@@ -5,6 +5,7 @@ import dao.projectDAOs.interfaces.TaskDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
+import java.util.List;
 
 public class TaskDAOImplementation implements TaskDAO {
 
@@ -50,7 +51,22 @@ public class TaskDAOImplementation implements TaskDAO {
 
     @Override
     public Task selectTask(int id) {
-        return null;
+        Task task = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TASK)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String description = resultSet.getString("description");
+                int employeeID = resultSet.getInt("employeeID");
+                task = new Task(id, description, employeeID);
+            }
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return task;
     }
 
     @Override
