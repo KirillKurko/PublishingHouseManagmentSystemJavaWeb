@@ -1,0 +1,49 @@
+package dao.userDAOs.implementation;
+
+import beans.employees.employeesImplementations.Publisher;
+import dao.userDAOs.interfaces.PublisherDAO;
+import utilities.DatabaseUtility;
+
+import java.sql.*;
+
+public class PublisherDAOImplementation implements PublisherDAO  {
+
+    private static final String INSERT_PUBLISHER = "INSERT INTO Publisher(finances, employeeID) VALUES (?, ?);";
+    private static final String UPDATE_PUBLISHER = "UPDATE Publisher SET finances = ?, employeeID = ? WHERE id = ?;";
+    private static final String SELECT_PUBLISHER = "SELECT * FROM Publisher WHERE id = ?;";
+    private static final String DELETE_PUBLISHER = "DELETE FROM Publisher WHERE id = ?;";
+
+    @Override
+    public int insertPublisher(Publisher publisher) {
+        int id = 0;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PUBLISHER, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setDouble(1, publisher.getFinances());
+            preparedStatement.setInt(2, publisher.getEmployeeID());
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return id;
+    }
+
+    @Override
+    public boolean updatePublisher(Publisher publisher) {
+        return false;
+    }
+
+    @Override
+    public Publisher selectPublisher(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean deletePublisher(int id) {
+        return false;
+    }
+}
