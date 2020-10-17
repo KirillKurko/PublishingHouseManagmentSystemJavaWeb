@@ -50,7 +50,21 @@ public class PublisherDAOImplementation implements PublisherDAO  {
 
     @Override
     public Publisher selectPublisher(int id) {
-        return null;
+        Publisher publisher = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PUBLISHER)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                double finances = resultSet.getDouble("finances");
+                int employeeID = resultSet.getInt("employeeID");
+                publisher = new Publisher(id, finances, employeeID);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return publisher;
     }
 
     @Override
