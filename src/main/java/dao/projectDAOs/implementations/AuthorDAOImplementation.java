@@ -50,7 +50,21 @@ public class AuthorDAOImplementation implements AuthorDAO {
 
     @Override
     public Author selectAuthor(int id) {
-        return null;
+        Author author = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_AUTHOR)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String surname = resultSet.getString("surname");
+                author = new Author(id, name, surname);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return author;
     }
 
     @Override
