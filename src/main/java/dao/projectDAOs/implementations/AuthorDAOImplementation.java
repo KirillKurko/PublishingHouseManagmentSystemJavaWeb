@@ -34,7 +34,18 @@ public class AuthorDAOImplementation implements AuthorDAO {
 
     @Override
     public boolean updateAuthor(Author author) {
-        return false;
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_AUTHOR)) {
+            preparedStatement.setString(1, author.getName());
+            preparedStatement.setString(2, author.getSurname());
+            preparedStatement.setInt(3, author.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
