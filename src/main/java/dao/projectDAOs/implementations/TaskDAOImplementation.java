@@ -20,6 +20,7 @@ public class TaskDAOImplementation implements TaskDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TASK, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, task.getDescription());
             preparedStatement.setInt(2, task.getEmployeeID());
+            preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next()) {
                 id = resultSet.getInt(1);
@@ -33,7 +34,18 @@ public class TaskDAOImplementation implements TaskDAO {
 
     @Override
     public boolean updateTask(Task task) {
-        return false;
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TASK)) {
+            preparedStatement.setString(1, task.getDescription());
+            preparedStatement.setInt(2, task.getEmployeeID());
+            preparedStatement.setInt(3, task.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
