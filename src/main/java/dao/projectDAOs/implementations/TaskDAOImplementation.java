@@ -5,7 +5,6 @@ import dao.projectDAOs.interfaces.TaskDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
-import java.util.List;
 
 public class TaskDAOImplementation implements TaskDAO {
 
