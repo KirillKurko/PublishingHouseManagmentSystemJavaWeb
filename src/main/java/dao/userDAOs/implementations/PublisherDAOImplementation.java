@@ -1,4 +1,4 @@
-package dao.userDAOs.implementation;
+package dao.userDAOs.implementations;
 
 import beans.employees.employeesImplementations.Publisher;
 import dao.userDAOs.interfaces.PublisherDAO;
@@ -71,7 +71,7 @@ public class PublisherDAOImplementation implements PublisherDAO  {
     public boolean deletePublisher(int id) {
         boolean rowDeleted = false;
         try (Connection connection = DatabaseUtility.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PUBLISHER)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PUBLISHER)) {
             preparedStatement.setInt(1, id);
             rowDeleted = preparedStatement.executeUpdate() > 0;
         }
@@ -79,5 +79,4 @@ public class PublisherDAOImplementation implements PublisherDAO  {
             exception.printStackTrace();
         }
         return rowDeleted;
-    }
-}
+    }}

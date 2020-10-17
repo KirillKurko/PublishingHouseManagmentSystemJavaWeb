@@ -1,4 +1,4 @@
-package dao.userDAOs.implementation;
+package dao.userDAOs.implementations;
 
 import beans.employees.employeesImplementations.LeadEditor;
 import dao.userDAOs.interfaces.LeadEditorDAO;

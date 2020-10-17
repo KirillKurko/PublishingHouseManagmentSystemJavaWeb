@@ -1,4 +1,4 @@
-package dao.userDAOs.implementation;
+package dao.userDAOs.implementations;
 
 import beans.employees.employeesImplementations.Employee;
 import dao.userDAOs.interfaces.EmployeeDAO;
