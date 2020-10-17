@@ -4,11 +4,11 @@ import beans.employees.employeesImplementations.LeadEditor;
 
 public interface LeadEditorDAO {
 
-    int insertChiefEditor(LeadEditor chiefEditor);
+    int insertLeadEditor(LeadEditor chiefEditor);
 
-    boolean updateChiefEditor(LeadEditor chiefEditor);
+    boolean updateLeadEditor(LeadEditor chiefEditor);
 
-    LeadEditor selectChiefEditor(int id);
+    LeadEditor selectLeadEditor(int id);
 
-    boolean deleteChiefEditor(int id);
+    boolean deleteLeadEditor(int id);
 }

@@ -14,7 +14,7 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
     private static final String DELETE_LEAD_EDITOR = "DELETE FROM LeadEditor WHERE id = ?;";
 
     @Override
-    public int insertChiefEditor(LeadEditor chiefEditor) {
+    public int insertLeadEditor(LeadEditor chiefEditor) {
         int id = 0;
         try (Connection connection = DatabaseUtility.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_LEAD_EDITOR, Statement.RETURN_GENERATED_KEYS)) {
@@ -34,7 +34,7 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
     }
 
     @Override
-    public boolean updateChiefEditor(LeadEditor chiefEditor) {
+    public boolean updateLeadEditor(LeadEditor chiefEditor) {
         boolean rowUpdated = false;
         try (Connection connection = DatabaseUtility.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_LEAD_EDITOR)) {
@@ -51,12 +51,27 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
     }
 
     @Override
-    public LeadEditor selectChiefEditor(int id) {
-        return null;
+    public LeadEditor selectLeadEditor(int id) {
+        LeadEditor leadEditor = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LEAD_EDITOR)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int finishedProjectsAmount = resultSet.getInt("finishedProjectsAmount");
+                String mainGenre = resultSet.getString("mainGenre");
+                int employeeID = resultSet.getInt("employeeID");
+                leadEditor = new LeadEditor(id, finishedProjectsAmount, mainGenre, employeeID);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return leadEditor;
     }
 
     @Override
-    public boolean deleteChiefEditor(int id) {
+    public boolean deleteLeadEditor(int id) {
         return false;
     }
 }
