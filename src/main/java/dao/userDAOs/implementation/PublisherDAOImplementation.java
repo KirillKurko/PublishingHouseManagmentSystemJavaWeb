@@ -69,6 +69,15 @@ public class PublisherDAOImplementation implements PublisherDAO  {
 
     @Override
     public boolean deletePublisher(int id) {
-        return false;
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PUBLISHER)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 }
