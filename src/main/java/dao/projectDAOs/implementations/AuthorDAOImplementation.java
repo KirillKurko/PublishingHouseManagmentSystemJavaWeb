@@ -69,6 +69,15 @@ public class AuthorDAOImplementation implements AuthorDAO {
 
     @Override
     public boolean deleteAuthor(int id) {
-        return false;
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_AUTHOR)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 }
