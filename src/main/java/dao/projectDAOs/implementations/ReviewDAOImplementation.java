@@ -9,9 +9,9 @@ import java.sql.*;
 public class ReviewDAOImplementation implements ReviewDAO  {
 
     private static final String INSERT_REVIEW = "INSERT INTO Review(rating, description, bookID) VALUES (?, ?, ?);";
-    private static final String UPDATE_REVIEW  = "UPDATE Review SET rating = ?, description = ?, bookID = ? WHERE id = ?;";
-    private static final String SELECT_REVIEW  = "SELECT * FROM Review WHERE id = ?;";
-    private static final String DELETE_REVIEW  = "DELETE FROM Review WHERE id = ?;";
+    private static final String UPDATE_REVIEW = "UPDATE Review SET rating = ?, description = ?, bookID = ? WHERE id = ?;";
+    private static final String SELECT_REVIEW = "SELECT * FROM Review WHERE id = ?;";
+    private static final String DELETE_REVIEW = "DELETE FROM Review WHERE id = ?;";
 
     @Override
     public int insertReview(Review review) {
@@ -35,7 +35,19 @@ public class ReviewDAOImplementation implements ReviewDAO  {
 
     @Override
     public boolean updateReview(Review review) {
-        return false;
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_REVIEW)) {
+            preparedStatement.setInt(1, review.getRating());
+            preparedStatement.setString(2, review.getDescription());
+            preparedStatement.setInt(3, review.getBookID());
+            preparedStatement.setInt(4, review.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
