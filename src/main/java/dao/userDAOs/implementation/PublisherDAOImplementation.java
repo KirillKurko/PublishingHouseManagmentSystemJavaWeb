@@ -34,7 +34,18 @@ public class PublisherDAOImplementation implements PublisherDAO  {
 
     @Override
     public boolean updatePublisher(Publisher publisher) {
-        return false;
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PUBLISHER)) {
+            preparedStatement.setDouble(1, publisher.getFinances());
+            preparedStatement.setInt(2, publisher.getEmployeeID());
+            preparedStatement.setInt(3, publisher.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
