@@ -1,4 +1,4 @@
-package controller;
+package controller.registrationServlets;
 
 import model.beans.employees.User;
 import model.dao.userDAOs.implementations.UserDAOImplementation;
@@ -24,21 +24,20 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = getUserFromRequestAttributes(request);
+        User user = getUserFromRequest(request);
         int id = userDAO.insertUser(user);
         user.setId(id);
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        session.setAttribute("currentUserId", id);
+        session.setAttribute("userId", id);
         response.sendRedirect("view/employeeRegistration.jsp");
     }
 
-    private User getUserFromRequestAttributes(HttpServletRequest request) {
+    private User getUserFromRequest(HttpServletRequest request) {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
-        System.out.println(role);
         return new User(username, email, password, role);
     }
 }

@@ -8,5 +8,9 @@
     Username: ${sessionScope.user.login}
     Password: ${sessionScope.user.password}
     Role: ${sessionScope.user.role}
+    Name: ${sessionScope.employee.name}
+    Surname: ${sessionScope.employee.surname}
+    employeeId: ${sessionScope.employeeId}
+    userId: ${sessionScope.userId}
 </body>
 </html>

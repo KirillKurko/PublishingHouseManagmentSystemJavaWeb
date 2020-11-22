@@ -12,7 +12,7 @@
         <div class="header">
             <h2>Create Account</h2>
         </div>
-        <form id="form" class="form" action="registration" method="post">
+        <form id="form" class="form" action="${pageContext.request.contextPath}/registration" method="post">
             <div class="form-control">
                 <label for="username">Username</label>
                 <input type="text" placeholder="Username" name="username" id="username" />

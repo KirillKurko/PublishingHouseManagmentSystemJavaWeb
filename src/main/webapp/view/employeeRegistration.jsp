@@ -4,46 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="resources/css/registrationPageStyle.css" type="text/css">
+    <link rel="stylesheet" href="../resources/css/registrationPageStyle.css" type="text/css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script defer src="resources/js/registrationPageValidation.js"></script>
 <body>
 <div class="container">
     <div class="header">
         <h2>Enter Information</h2>
     </div>
-    <form id="form" class="form" action="userInformation" method="post">
+    <form id="form" class="form" action="${pageContext.request.contextPath}/registration/employeeInformation" method="post">
         <div class="form-control">
-            <label for="username">Username</label>
-            <input type="text" placeholder="Username" name="username" id="username" />
+            <label for="name">Name</label>
+            <input type="text" placeholder="Name" name="name" id="name" />
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
         <div class="form-control">
-            <label for="email">Email</label>
-            <input type="text" placeholder="Email" name="email" id="email" />
+            <label for="surname">Surname</label>
+            <input type="text" placeholder="Surname" name="surname" id="surname" />
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
         <div class="form-control">
-            <label for="role">Role</label>
-            <input type="text" placeholder="Role" name="role" id="role"/>
+            <label for="experience">Experience</label>
+            <input type="text" placeholder="Experience" name="experience" id="experience"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
         <div class="form-control">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" name="password" id="password"/>
-            <i class="fas fa-check-circle"></i>
-            <i class="fas fa-exclamation-circle"></i>
-            <small>Error message</small>
-        </div>
-        <div class="form-control">
-            <label for="confirmedPassword">Confirm Password</label>
-            <input type="password" placeholder="Password" name="confirmedPassword" id="confirmedPassword"/>
+            <label for="salary">Salary</label>
+            <input type="text" placeholder="Salary" name="salary" id="salary"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
