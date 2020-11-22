@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="../resources/css/registrationPageStyle.css" type="text/css">
+    <link rel="stylesheet" href="src/main/webapp/resources/css/registrationPageStyle.css" type="text/css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <body>
 <div class="container">

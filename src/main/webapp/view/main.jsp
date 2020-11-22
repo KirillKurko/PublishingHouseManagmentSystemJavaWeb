@@ -5,12 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    Username: ${sessionScope.user.login}
-    Password: ${sessionScope.user.password}
-    Role: ${sessionScope.user.role}
-    Name: ${sessionScope.employee.name}
-    Surname: ${sessionScope.employee.surname}
-    employeeId: ${sessionScope.employeeId}
-    userId: ${sessionScope.userId}
+    employeeId: ${sessionScope.userId}
+    <hr>
+    userId: ${sessionScope.employeeId}
 </body>
 </html>

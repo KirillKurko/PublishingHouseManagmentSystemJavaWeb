@@ -11,6 +11,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
     private static final String INSERT_EMPLOYEE = "INSERT INTO Employee(name, surname, experience, salary, userID) VALUES (?, ?, ?, ?, ?);";
     private static final String UPDATE_EMPLOYEE = "UPDATE Employee SET name = ?, surname = ?, experience = ?, salary = ?, userID = ? WHERE id = ?;";
     private static final String SELECT_EMPLOYEE = "SELECT * FROM Employee WHERE id = ?;";
+    private static final String SELECT_EMPLOYEE_BY_USER_ID = "SELECT * FROM Employee WHERE userID = ?;";
     private static final String DELETE_EMPLOYEE = "DELETE FROM Employee WHERE id = ?;";
 
     @Override
@@ -59,6 +60,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
         Employee employee = null;
         try (Connection connection = DatabaseUtility.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE)) {
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -67,6 +69,28 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
                 double salary = resultSet.getDouble("salary");
                 int userID = resultSet.getInt("userID");
                 employee = new Employee(id, name, surname, experience, salary, userID);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return employee;
+    }
+
+    @Override
+    public Employee selectEmployeeByUserId(int userId) {
+        Employee employee = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE_BY_USER_ID)) {
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("name");
+                String surname = resultSet.getString("surname");
+                int experience = resultSet.getInt("experience");
+                double salary = resultSet.getDouble("salary");
+                employee = new Employee(id, name, surname, experience, salary, userId);
             }
         }
         catch (SQLException exception) {

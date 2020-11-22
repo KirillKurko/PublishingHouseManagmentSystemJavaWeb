@@ -10,5 +10,7 @@ public interface UserDAO {
 
     User selectUser(int id);
 
+    User selectUserByLogin(String login);
+
     boolean deleteUser(int id);
 }

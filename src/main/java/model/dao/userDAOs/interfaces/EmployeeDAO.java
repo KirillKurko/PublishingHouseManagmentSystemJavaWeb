@@ -10,5 +10,7 @@ public interface EmployeeDAO {
 
     Employee selectEmployee(int id);
 
+    Employee selectEmployeeByUserId(int userId);
+
     boolean deleteEmployee(int id);
 }

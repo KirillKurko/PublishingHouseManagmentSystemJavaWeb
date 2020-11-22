@@ -10,26 +10,12 @@
     <body>
     <div class="container">
         <div class="header">
-            <h2>Create Account</h2>
+            <h2>Sign Up</h2>
         </div>
-        <form id="form" class="form" action="${pageContext.request.contextPath}/registration" method="post">
+        <form id="form" class="form" action="${pageContext.request.contextPath}/login" method="post">
             <div class="form-control">
                 <label for="username">Username</label>
                 <input type="text" placeholder="Username" name="username" id="username" />
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
-            <div class="form-control">
-                <label for="email">Email</label>
-                <input type="text" placeholder="Email" name="email" id="email" />
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
-            <div class="form-control">
-                <label for="role">Role</label>
-                <input type="text" placeholder="Role" name="role" id="role"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
@@ -41,14 +27,8 @@
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
-            <div class="form-control">
-                <label for="confirmedPassword">Confirm Password</label>
-                <input type="password" placeholder="Password" name="confirmedPassword" id="confirmedPassword"/>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
             <button type="submit">Submit</button>
+            <a href="${pageContext.request.contextPath}/view/registration/registrationPage.jsp">Login</a>
         </form>
     </div>
     </body>
