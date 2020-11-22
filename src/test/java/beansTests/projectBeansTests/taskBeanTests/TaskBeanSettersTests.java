@@ -1,6 +1,6 @@
 package beansTests.projectBeansTests.taskBeanTests;
 
-import beans.project.Task;
+import model.beans.project.Task;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;

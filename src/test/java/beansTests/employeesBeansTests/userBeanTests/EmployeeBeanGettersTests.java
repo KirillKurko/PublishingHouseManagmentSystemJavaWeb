@@ -1,6 +1,6 @@
 package beansTests.employeesBeansTests.userBeanTests;
 
-import beans.employees.User;
+import model.beans.employees.User;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
@@ -54,24 +54,14 @@ public class EmployeeBeanGettersTests {
     }
 
     @Test
-    public void testGetHash() throws NoSuchFieldException, IllegalAccessException {
+    public void testGetRole() throws NoSuchFieldException, IllegalAccessException {
 
         final User user = new User();
-        final Field hash = user.getClass().getDeclaredField("hash");
-        hash.setAccessible(true);
-        hash.set(user, "1234abcd");
+        final Field role = user.getClass().getDeclaredField("role");
+        role.setAccessible(true);
+        role.set(user, "admin");
 
-        assertEquals("field wasn't retrieved properly", user.getHash(), "1234abcd");
+        assertEquals("field wasn't retrieved properly", user.getRole(), "admin");
     }
 
-    @Test
-    public void testIsActivated() throws NoSuchFieldException, IllegalAccessException {
-
-        final User user = new User();
-        final Field activated = user.getClass().getDeclaredField("activated");
-        activated.setAccessible(true);
-        activated.set(user, true);
-
-        assertEquals("field wasn't retrieved properly", user.isActivated(), true);
-    }
 }

@@ -1,6 +1,6 @@
-import beans.employees.User;
-import dao.userDAOs.implementations.UserDAOImplementation;
-import dao.userDAOs.interfaces.UserDAO;
+import model.beans.employees.User;
+import model.dao.userDAOs.implementations.UserDAOImplementation;
+import model.dao.userDAOs.interfaces.UserDAO;
 
 public class mainTest {
 

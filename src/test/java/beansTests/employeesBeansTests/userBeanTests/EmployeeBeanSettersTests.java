@@ -1,6 +1,6 @@
 package beansTests.employeesBeansTests.userBeanTests;
 
-import beans.employees.User;
+import model.beans.employees.User;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
@@ -58,26 +58,15 @@ public class EmployeeBeanSettersTests {
     }
 
     @Test
-    public void testSetHash() throws NoSuchFieldException, IllegalAccessException {
+    public void testSetRole() throws NoSuchFieldException, IllegalAccessException {
 
         final User user = new User();
 
-        user.setHash("1234abcd");
+        user.setRole("admin");
 
-        final Field hash = user.getClass().getDeclaredField("hash");
-        hash.setAccessible(true);
-        assertEquals("Fields doesn't match", hash.get(user), "1234abcd");
+        final Field role = user.getClass().getDeclaredField("role");
+        role.setAccessible(true);
+        assertEquals("Fields doesn't match", role.get(user), "admin");
     }
 
-    @Test
-    public void testSetActivated() throws NoSuchFieldException, IllegalAccessException {
-
-        final User user = new User();
-
-        user.setActivated(true);
-
-        final Field activated = user.getClass().getDeclaredField("activated");
-        activated.setAccessible(true);
-        assertEquals("Fields doesn't match", activated.get(user), true);
-    }
 }

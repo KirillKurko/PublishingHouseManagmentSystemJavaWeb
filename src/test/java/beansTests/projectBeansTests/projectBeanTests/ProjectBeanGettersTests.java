@@ -1,8 +1,8 @@
 package beansTests.projectBeansTests.projectBeanTests;
 
-import beans.employees.employeesImplementations.LeadEditor;
-import beans.project.Book;
-import beans.project.Project;
+import model.beans.employees.employeesImplementations.LeadEditor;
+import model.beans.project.Book;
+import model.beans.project.Project;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;

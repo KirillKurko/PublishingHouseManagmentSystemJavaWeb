@@ -12,7 +12,7 @@
         <div class="header">
             <h2>Create Account</h2>
         </div>
-        <form id="form" class="form" action="testServlet" method="post">
+        <form id="form" class="form" action="registration" method="post">
             <div class="form-control">
                 <label for="username">Username</label>
                 <input type="text" placeholder="Username" name="username" id="username" />
@@ -23,6 +23,13 @@
             <div class="form-control">
                 <label for="email">Email</label>
                 <input type="text" placeholder="Email" name="email" id="email" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="role">Role</label>
+                <input type="text" placeholder="Role" name="role" id="role"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>

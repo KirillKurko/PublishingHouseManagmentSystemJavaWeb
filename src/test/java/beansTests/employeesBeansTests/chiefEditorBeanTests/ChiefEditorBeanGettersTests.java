@@ -1,6 +1,6 @@
 package beansTests.employeesBeansTests.chiefEditorBeanTests;
 
-import beans.employees.employeesImplementations.ChiefEditor;
+import model.beans.employees.employeesImplementations.ChiefEditor;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;

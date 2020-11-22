@@ -1,6 +1,6 @@
 package beansTests.projectBeansTests.reviewBeanTests;
 
-import beans.project.Review;
+import model.beans.project.Review;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;

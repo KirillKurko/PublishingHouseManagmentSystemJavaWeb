@@ -1,6 +1,6 @@
 package beansTests.employeesBeansTests.PublisherBeanTests;
 
-import beans.employees.employeesImplementations.Publisher;
+import model.beans.employees.employeesImplementations.Publisher;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
