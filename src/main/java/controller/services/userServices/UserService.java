@@ -1,4 +1,4 @@
-package controller.services;
+package controller.services.userServices;
 
 import model.beans.employees.User;
 import model.dao.userDAOs.implementations.*;

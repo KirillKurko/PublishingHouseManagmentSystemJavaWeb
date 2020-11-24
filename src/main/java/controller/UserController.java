@@ -1,6 +1,6 @@
 package controller;
 
-import controller.services.UserService;
+import controller.services.userServices.UserService;
 import model.beans.employees.User;
 import model.dao.userDAOs.implementations.UserDAOImplementation;
 import model.dao.userDAOs.interfaces.UserDAO;

@@ -1,8 +1,7 @@
 package controller.registrationServlets;
 
+import controller.services.RegistrationService;
 import model.beans.employees.employeesImplementations.Employee;
-import model.dao.userDAOs.implementations.EmployeeDAOImplementation;
-import model.dao.userDAOs.interfaces.EmployeeDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,31 +14,37 @@ import java.io.IOException;
 @WebServlet("/registration/employeeInformation")
 public class EmployeeRegistrationServlet extends HttpServlet {
 
-    private EmployeeDAO employeeDAO;
+    private RegistrationService registrationService;
 
     @Override
     public void init() {
-        employeeDAO = new EmployeeDAOImplementation();
+        registrationService = new RegistrationService();
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Employee employee = getEmployeeFromRequest(request);
-        int id = employeeDAO.insertEmployee(employee);
-        employee.setId(id);
+        Employee employee = registrationService.registerEmployee(request, response);
         HttpSession session = request.getSession();
-        session.setAttribute("employeeId", id);
+        session.setAttribute("employeeId", employee.getId());
         session.setAttribute("employee", employee);
-        response.sendRedirect(request.getContextPath() + "/view/main.jsp");
+        String path = getPath(request);
+        response.sendRedirect(request.getContextPath() + path);
     }
 
-    private Employee getEmployeeFromRequest(HttpServletRequest request) {
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        int experience = Integer.parseInt(request.getParameter("experience"));
-        double salary = Double.parseDouble(request.getParameter("salary"));
-        int userId = (int) request.getSession().getAttribute("userId");
-        return new Employee(name, surname, experience, salary, userId);
+    private String getPath(HttpServletRequest request) {
+        String path = "/view/main.jsp";
+        String role = (String) request.getSession().getAttribute("role");
+        switch (role) {
+            case "publisher":
+                path = "/view/registration/publisherRegistration.jsp";
+                break;
+            case "chiefEditor":
+                path = "/view/registration/chiefEditorRegistration.jsp";
+                break;
+            case "leadEditor":
+                path = "/view/registration/leadEditorRegistration.jsp";
+                break;
+        }
+        return path;
     }
-
 }
