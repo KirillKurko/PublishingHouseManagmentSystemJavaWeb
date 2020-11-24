@@ -12,6 +12,7 @@ public class PublisherDAOImplementation implements PublisherDAO  {
     private static final String UPDATE_PUBLISHER = "UPDATE Publisher SET finances = ?, employeeID = ? WHERE id = ?;";
     private static final String SELECT_PUBLISHER = "SELECT * FROM Publisher WHERE id = ?;";
     private static final String DELETE_PUBLISHER = "DELETE FROM Publisher WHERE id = ?;";
+    private static final String DELETE_PUBLISHER_BY_EMPLOYEE_ID = "DELETE FROM Publisher WHERE employeeID = ?;";
 
     @Override
     public int insertPublisher(Publisher publisher) {
@@ -79,4 +80,19 @@ public class PublisherDAOImplementation implements PublisherDAO  {
             exception.printStackTrace();
         }
         return rowDeleted;
-    }}
+    }
+
+    @Override
+    public boolean deletePublisherByEmployeeId(int id) {
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PUBLISHER_BY_EMPLOYEE_ID)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
+    }
+}

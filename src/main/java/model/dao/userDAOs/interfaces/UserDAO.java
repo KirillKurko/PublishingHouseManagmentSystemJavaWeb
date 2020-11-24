@@ -2,15 +2,19 @@ package model.dao.userDAOs.interfaces;
 
 import model.beans.employees.User;
 
+import java.util.List;
+
 public interface UserDAO {
 
     int insertUser(User user);
 
-    boolean updateUser(User user);
+    void updateUser(User user);
 
     User selectUser(int id);
 
     User selectUserByLogin(String login);
 
-    boolean deleteUser(int id);
+    List<User> selectUsers();
+
+    void deleteUser(int id);
 }

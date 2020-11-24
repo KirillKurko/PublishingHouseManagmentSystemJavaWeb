@@ -31,6 +31,10 @@ public class LoginService {
         return -1;
     }
 
+    public String getRole() {
+        return user.getRole();
+    }
+
     private boolean checkUser(String loginAttempt, String passwordAttempt) {
         user = userDAO.selectUserByLogin(loginAttempt);
         if (user == null) {

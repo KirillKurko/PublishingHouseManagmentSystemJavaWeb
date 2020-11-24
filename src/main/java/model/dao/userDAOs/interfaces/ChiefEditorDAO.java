@@ -11,4 +11,6 @@ public interface ChiefEditorDAO {
     ChiefEditor selectChiefEditor(int id);
 
     boolean deleteChiefEditor(int id);
+
+    boolean deleteChiefEditorByEmployeeId(int id);
 }

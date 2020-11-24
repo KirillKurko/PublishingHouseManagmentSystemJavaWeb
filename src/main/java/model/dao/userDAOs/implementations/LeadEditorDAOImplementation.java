@@ -12,6 +12,7 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
     private static final String UPDATE_LEAD_EDITOR = "UPDATE LeadEditor SET finishedProjectsAmount = ?, mainGenre = ?, employeeID = ? WHERE id = ?;";
     private static final String SELECT_LEAD_EDITOR = "SELECT * FROM LeadEditor WHERE id = ?;";
     private static final String DELETE_LEAD_EDITOR = "DELETE FROM LeadEditor WHERE id = ?;";
+    private static final String DELETE_LEAD_EDITOR_BY_EMPLOYEE_ID = "DELETE FROM LeadEditor WHERE employeeID = ?;";
 
     @Override
     public int insertLeadEditor(LeadEditor chiefEditor) {
@@ -75,6 +76,20 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
         boolean rowDeleted = false;
         try (Connection connection = DatabaseUtility.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_LEAD_EDITOR)) {
+            preparedStatement.setInt(1 ,id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
+    }
+
+    @Override
+    public boolean deleteLeadEditorByEmployeeId(int id) {
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_LEAD_EDITOR_BY_EMPLOYEE_ID)) {
             preparedStatement.setInt(1 ,id);
             rowDeleted = preparedStatement.executeUpdate() > 0;
         }

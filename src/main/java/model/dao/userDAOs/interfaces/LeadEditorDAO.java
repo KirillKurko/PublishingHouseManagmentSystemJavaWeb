@@ -11,4 +11,6 @@ public interface LeadEditorDAO {
     LeadEditor selectLeadEditor(int id);
 
     boolean deleteLeadEditor(int id);
+
+    boolean deleteLeadEditorByEmployeeId(int id);
 }

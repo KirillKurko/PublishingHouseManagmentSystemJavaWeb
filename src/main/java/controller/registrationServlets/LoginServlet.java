@@ -16,6 +16,7 @@ public class LoginServlet extends HttpServlet {
     private LoginService loginService;
     private int userId;
     private int employeeId;
+    private String role;
 
     @Override
     public void init() {
@@ -27,19 +28,20 @@ public class LoginServlet extends HttpServlet {
         String path = "/view/main.jsp";;
         String login = request.getParameter("username");
         String password = request.getParameter("password");
-        if (!getIdValues(login, password)) {
+        if (!getSessionValues(login, password)) {
             path = "/view/errors/loginError.jsp";
         }
         setSessionAttributes(request);
         response.sendRedirect(request.getContextPath() + path);
     }
 
-    private boolean getIdValues(String login, String password) {
+    private boolean getSessionValues(String login, String password) {
         userId = loginService.getUserId(login, password);
         if (userId < 0) {
             return false;
         }
         employeeId = loginService.getEmployeeId(userId);
+        role = loginService.getRole();
         return true;
     }
 
@@ -47,5 +49,6 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("userId", userId);
         session.setAttribute("employeeId", employeeId);
+        session.setAttribute("role", role);
     }
 }

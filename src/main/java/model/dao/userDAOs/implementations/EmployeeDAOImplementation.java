@@ -13,6 +13,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
     private static final String SELECT_EMPLOYEE = "SELECT * FROM Employee WHERE id = ?;";
     private static final String SELECT_EMPLOYEE_BY_USER_ID = "SELECT * FROM Employee WHERE userID = ?;";
     private static final String DELETE_EMPLOYEE = "DELETE FROM Employee WHERE id = ?;";
+    private static final String DELETE_EMPLOYEE_BY_USER_ID = "DELETE FROM Employee WHERE userID = ?;";
 
     @Override
     public int insertEmployee(Employee employee) {
@@ -104,6 +105,20 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
         boolean rowDeleted = false;
         try (Connection connection = DatabaseUtility.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
+    }
+
+    @Override
+    public boolean deleteEmployeeByUserId(int id) {
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE_BY_USER_ID)) {
             preparedStatement.setInt(1, id);
             rowDeleted = preparedStatement.executeUpdate() > 0;
         }

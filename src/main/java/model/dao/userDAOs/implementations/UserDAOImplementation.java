@@ -5,6 +5,8 @@ import model.dao.userDAOs.interfaces.UserDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAOImplementation implements UserDAO {
 
@@ -12,6 +14,7 @@ public class UserDAOImplementation implements UserDAO {
     private static final String UPDATE_USER = "UPDATE User SET login = ?, password = ?, email = ?, role = ? WHERE id = ?;";
     private static final String SELECT_USER = "SELECT * FROM User WHERE id = ?;";
     private static final String SELECT_USER_BY_LOGIN = "SELECT * FROM User WHERE login = ?;";
+    private static final String SELECT_USERS = "SELECT * FROM User;";
     private static final String DELETE_USER = "DELETE FROM User WHERE id = ?;";
 
     @Override
@@ -36,7 +39,7 @@ public class UserDAOImplementation implements UserDAO {
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public void updateUser(User user) {
         boolean rowUpdated = false;
         try (Connection connection = DatabaseUtility.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
@@ -50,7 +53,6 @@ public class UserDAOImplementation implements UserDAO {
         catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return rowUpdated;
     }
 
     @Override
@@ -96,7 +98,28 @@ public class UserDAOImplementation implements UserDAO {
     }
 
     @Override
-    public boolean deleteUser(int id) {
+    public List<User> selectUsers() {
+        List<User> users = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String login = resultSet.getString("login");
+                String password = resultSet.getString("password");
+                String email = resultSet.getString("email");
+                String role = resultSet.getString("role");
+                users.add(new User(id, login, password, email, role));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return users;
+    }
+
+    @Override
+    public void deleteUser(int id) {
         boolean rowDeleted = false;
         try (Connection connection = DatabaseUtility.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
@@ -106,7 +129,6 @@ public class UserDAOImplementation implements UserDAO {
         catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return rowDeleted;
     }
 
 }

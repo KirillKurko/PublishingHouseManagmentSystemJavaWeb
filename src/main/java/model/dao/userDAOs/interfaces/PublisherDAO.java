@@ -11,4 +11,6 @@ public interface PublisherDAO {
     Publisher selectPublisher(int id);
 
     boolean deletePublisher(int id);
+
+    boolean deletePublisherByEmployeeId(int id);
 }

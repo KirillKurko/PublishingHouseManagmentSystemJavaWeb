@@ -12,6 +12,7 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
     private static final String UPDATE_CHIEF_EDITOR = "UPDATE ChiefEditor SET finishedProjectsAmount = ?, employeeID = ? WHERE id = ?;";
     private static final String SELECT_CHIEF_EDITOR = "SELECT * FROM ChiefEditor WHERE id = ?;";
     private static final String DELETE_CHIEF_EDITOR = "DELETE FROM ChiefEditor WHERE id = ?;";
+    private static final String DELETE_CHIEF_EDITOR_BY_EMPLOYEE_ID = "DELETE FROM ChiefEditor WHERE employeeID = ?;";
 
     @Override
     public int insertChiefEditor(ChiefEditor chiefEditor) {
@@ -71,6 +72,20 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
         boolean rowDeleted = false;
         try (Connection connection = DatabaseUtility.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CHIEF_EDITOR)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
+    }
+
+    @Override
+    public boolean deleteChiefEditorByEmployeeId(int id) {
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CHIEF_EDITOR_BY_EMPLOYEE_ID)) {
             preparedStatement.setInt(1, id);
             rowDeleted = preparedStatement.executeUpdate() > 0;
         }
