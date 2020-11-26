@@ -8,9 +8,9 @@
     </head>
     <body>
         <div class="topnav">
-            <a class="active" href="#">Add User</a>
-            <a class="active" href="@">Manufacturers</a>
-            <a class="active" style="float:right" href="#">Logout</a>
+            <a class="active" href="${pageContext.request.contextPath}/view/main.jsp">Home</a>
+            <a class="active" href="${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=add">Add</a>
+            <a class="active" style="float:right" href="${pageContext.request.contextPath}/login">Logout</a>
         </div>
         <br><br><br>
         <div class="container center">

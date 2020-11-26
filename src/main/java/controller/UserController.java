@@ -1,5 +1,6 @@
 package controller;
 
+import controller.services.RegistrationService;
 import controller.services.userServices.UserService;
 import model.beans.employees.User;
 import model.dao.userDAOs.implementations.UserDAOImplementation;
@@ -20,11 +21,13 @@ public class UserController extends HttpServlet {
 
     private UserDAO userDAO;
     private UserService userService;
+    private RegistrationService registrationService;
 
     @Override
     public void init() {
         userDAO = new UserDAOImplementation();
         userService = new UserService();
+        registrationService = new RegistrationService();
     }
 
     @Override
@@ -45,6 +48,9 @@ public class UserController extends HttpServlet {
                 editUser(request, response);
                 getUsers(request, response);
                 break;
+            case "addUser":
+                addUser(request, response);
+                getUsers(request, response);
         }
     }
 
@@ -74,8 +80,12 @@ public class UserController extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String role = request.getParameter("role");
-        if (Checker.checkUsernameValid(login)) {
+        if (Checker.checkUsernameValid(login, id)) {
             userDAO.updateUser(new User(id, login, password, email, role));
         }
+    }
+
+    private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        registrationService.registerUser(request, response);
     }
 }

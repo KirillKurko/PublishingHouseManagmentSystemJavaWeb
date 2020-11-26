@@ -8,8 +8,8 @@ public class Checker {
 
     private static final UserDAO userDAO = new UserDAOImplementation();
 
-    public static boolean checkUsernameValid(String login) {
+    public static boolean checkUsernameValid(String login, int id) {
         User user = userDAO.selectUserByLogin(login);
-        return user == null;
+        return user == null || id == user.getId();
     }
 }

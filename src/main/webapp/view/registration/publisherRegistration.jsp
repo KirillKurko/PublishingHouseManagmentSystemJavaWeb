@@ -11,7 +11,7 @@
     <div class="header">
         <h2>Enter Information</h2>
     </div>
-    <form id="form" class="form" action="${pageContext.request.contextPath}/registration/employeeInformation/publisher" method="post">
+    <form id="form" class="form" action="${pageContext.request.contextPath}/registration" method="post">
         <div class="form-control">
             <label for="finances">Finances</label>
             <input type="text" placeholder="Finances" name="finances" id="finances" />
@@ -19,6 +19,8 @@
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
+        <input type="hidden" name="method" value="registerPublisher"/>
+        <input type="hidden" name="userId" value="${userId}"/>
         <button type="submit">Submit</button>
     </form>
 </div>

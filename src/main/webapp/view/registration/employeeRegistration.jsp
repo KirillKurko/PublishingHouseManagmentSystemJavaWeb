@@ -11,7 +11,7 @@
     <div class="header">
         <h2>Enter Information</h2>
     </div>
-    <form id="form" class="form" action="${pageContext.request.contextPath}/registration/employeeInformation" method="post">
+    <form id="form" class="form" action="${pageContext.request.contextPath}/registration" method="post">
         <div class="form-control">
             <label for="name">Name</label>
             <input type="text" placeholder="Name" name="name" id="name" />
@@ -40,6 +40,8 @@
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
+        <input type="hidden" name="method" value="registerEmployee"/>
+        <input type="hidden" name="userId" value="${userId}"/>
         <button type="submit">Submit</button>
     </form>
 </div>

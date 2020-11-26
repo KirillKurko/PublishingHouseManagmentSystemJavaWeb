@@ -33,8 +33,8 @@ public class RegistrationService {
 
     public User registerUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = getUserFromRequest(request);
-        while (!Checker.checkUsernameValid(user.getLogin())) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/registration/userRegistration.jsp");
+        while (!Checker.checkUsernameValid(user.getLogin(), user.getId())) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(request.getParameter("caller"));
             requestDispatcher.forward(request, response);
         }
         int id = userDAO.insertUser(user);
@@ -70,7 +70,6 @@ public class RegistrationService {
         return publisher;
     }
 
-
     private User getUserFromRequest(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -84,26 +83,26 @@ public class RegistrationService {
         String surname = request.getParameter("surname");
         int experience = Integer.parseInt(request.getParameter("experience"));
         double salary = Double.parseDouble(request.getParameter("salary"));
-        int userId = (int) request.getSession().getAttribute("userId");
+        int userId = (int) request.getSession().getAttribute("addUserId");
         return new Employee(name, surname, experience, salary, userId);
     }
 
     private LeadEditor getLeadEditorFromRequest(HttpServletRequest request) {
         int finishedProjectsAmount = Integer.parseInt(request.getParameter("finishedProjectsAmount"));
         String mainGenre = request.getParameter("mainGenre");
-        int employeeId = (int) request.getSession().getAttribute("employeeId");
+        int employeeId = (int) request.getSession().getAttribute("addEmployeeId");
         return new LeadEditor(finishedProjectsAmount, mainGenre, employeeId);
     }
 
     private ChiefEditor getChiefEditorFromRequest(HttpServletRequest request) {
         int finishedProjectsAmount = Integer.parseInt(request.getParameter("finishedProjectsAmount"));
-        int employeeId = (int) request.getSession().getAttribute("employeeId");
+        int employeeId = (int) request.getSession().getAttribute("addEmployeeId");
         return new ChiefEditor(finishedProjectsAmount, employeeId);
     }
 
     private Publisher getPublisherFromRequest(HttpServletRequest request) {
         double finances = Double.parseDouble(request.getParameter("finances"));
-        int employeeId = (int) request.getSession().getAttribute("employeeId");
+        int employeeId = (int) request.getSession().getAttribute("addEmployeeId");
         return new Publisher(finances, employeeId);
     }
 

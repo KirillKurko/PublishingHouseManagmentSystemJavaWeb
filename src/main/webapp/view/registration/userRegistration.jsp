@@ -12,7 +12,8 @@
         <div class="header">
             <h2>Login</h2>
         </div>
-        <form id="form" class="form" action="${pageContext.request.contextPath}/registration" method="post">
+        <form id="form" class="form" action="${pageContext.request.contextPath}/<%=
+        request.getParameter("action").equals("add") ? "add" : "registration"%>" method="post">
             <div class="form-control">
                 <label for="username">Username</label>
                 <input type="text" placeholder="Username" name="username" id="username" />
@@ -48,8 +49,10 @@
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
+            <input type="hidden" name="caller" value=view/registration/userRegistration.jsp"/>
+            <input type="hidden" name="method" value="registerUser"/>
             <button type="submit">Submit</button>
-            <a href="${pageContext.request.contextPath}/index.jsp">Sign up</a>
+            <button onclick="location.href='${pageContext.request.contextPath}/index.jsp'">Sign Up</button>
         </form>
     </div>
     </body>

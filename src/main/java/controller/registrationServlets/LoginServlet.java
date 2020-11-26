@@ -24,6 +24,15 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.removeAttribute("userId");
+        session.removeAttribute("employeeId");
+        session.removeAttribute("role");
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+    }
+
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = "/view/main.jsp";;
         String login = request.getParameter("username");

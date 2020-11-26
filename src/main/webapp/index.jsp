@@ -28,7 +28,7 @@
                 <small>Error message</small>
             </div>
             <button type="submit">Submit</button>
-            <a href="${pageContext.request.contextPath}/view/registration/userRegistration.jsp">Login</a>
+            <button onclick="location.href='${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=registration'">Login</button>
         </form>
     </div>
     </body>
