@@ -5,12 +5,15 @@ import model.dao.userDAOs.interfaces.LeadEditorDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LeadEditorDAOImplementation implements LeadEditorDAO {
 
     private static final String INSERT_LEAD_EDITOR = "INSERT INTO LeadEditor(finishedProjectsAmount, mainGenre, employeeID) VALUES (?, ?, ?);";
     private static final String UPDATE_LEAD_EDITOR = "UPDATE LeadEditor SET finishedProjectsAmount = ?, mainGenre = ?, employeeID = ? WHERE id = ?;";
     private static final String SELECT_LEAD_EDITOR = "SELECT * FROM LeadEditor WHERE id = ?;";
+    private static final String SELECT_LEAD_EDITORS = "SELECT * FROM LeadEditor;";
     private static final String DELETE_LEAD_EDITOR = "DELETE FROM LeadEditor WHERE id = ?;";
     private static final String DELETE_LEAD_EDITOR_BY_EMPLOYEE_ID = "DELETE FROM LeadEditor WHERE employeeID = ?;";
 
@@ -70,6 +73,27 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
         }
         return leadEditor;
     }
+
+    @Override
+    public List<LeadEditor> selectLeadEditors() {
+        List<LeadEditor> leadEditors = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LEAD_EDITORS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                int finishedProjectsAmount = resultSet.getInt("finishedProjectsAmount");
+                String mainGenre = resultSet.getString("mainGenre");
+                int employeeID = resultSet.getInt("employeeID");
+                leadEditors.add(new LeadEditor(id, finishedProjectsAmount, mainGenre, employeeID));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return leadEditors;
+    }
+
 
     @Override
     public boolean deleteLeadEditor(int id) {

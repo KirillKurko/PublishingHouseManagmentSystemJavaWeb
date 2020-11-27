@@ -1,7 +1,7 @@
-package controller;
+package controller.employeeController;
 
 import controller.services.RegistrationService;
-import controller.services.userServices.UserService;
+import controller.services.employeeServices.UserService;
 import model.beans.employees.User;
 import model.dao.userDAOs.implementations.UserDAOImplementation;
 import model.dao.userDAOs.interfaces.UserDAO;
@@ -62,7 +62,7 @@ public class UserController extends HttpServlet {
     private void getUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = userDAO.selectUsers();
         request.setAttribute("users", users);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/userPages/mainUserPage.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/employeePages/userPages/mainUserPage.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -70,7 +70,7 @@ public class UserController extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
         User user = userDAO.selectUser(userId);
         request.setAttribute("user", user);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/userPages/editUserPage.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/employeePages/userPages/editUserPage.jsp");
         requestDispatcher.forward(request, response);
     }
 

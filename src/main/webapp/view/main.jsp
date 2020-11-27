@@ -16,6 +16,9 @@
             <input type="hidden" name="action" value="getUsers">
             <button type="submit">Users</button>
         </form>
-        <a href="${pageContext.request.contextPath}/view/userPages/mainUserPage.jsp">Users</a>
+        <form id="form" class="form" action="${pageContext.request.contextPath}/leadEditors" method="get">
+            <input type="hidden" name="action" value="getLeadEditors">
+            <button type="submit">Lead Editors</button>
+        </form>
     </body>
 </html>
