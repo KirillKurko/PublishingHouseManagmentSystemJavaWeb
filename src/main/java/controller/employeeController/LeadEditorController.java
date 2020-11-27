@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/leadEditors")
-public class leadEditorController extends HttpServlet  {
+public class LeadEditorController extends HttpServlet  {
 
     private LeadEditorDAO leadEditorDAO;
     private EmployeeDAO employeeDAO;

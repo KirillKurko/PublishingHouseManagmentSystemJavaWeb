@@ -5,12 +5,15 @@ import model.dao.userDAOs.interfaces.EmployeeDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDAOImplementation implements EmployeeDAO {
 
     private static final String INSERT_EMPLOYEE = "INSERT INTO Employee(name, surname, experience, salary, userID) VALUES (?, ?, ?, ?, ?);";
     private static final String UPDATE_EMPLOYEE = "UPDATE Employee SET name = ?, surname = ?, experience = ?, salary = ?, userID = ? WHERE id = ?;";
     private static final String SELECT_EMPLOYEE = "SELECT * FROM Employee WHERE id = ?;";
+    private static final String SELECT_EMPLOYEES = "SELECT * FROM Employee;";
     private static final String SELECT_EMPLOYEE_BY_USER_ID = "SELECT * FROM Employee WHERE userID = ?;";
     private static final String DELETE_EMPLOYEE = "DELETE FROM Employee WHERE id = ?;";
     private static final String DELETE_EMPLOYEE_BY_USER_ID = "DELETE FROM Employee WHERE userID = ?;";
@@ -76,6 +79,28 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
             exception.printStackTrace();
         }
         return employee;
+    }
+
+    @Override
+    public List<Employee> selectEmployees() {
+        List<Employee> employees = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEES)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("name");
+                String surname = resultSet.getString("surname");
+                int experience = resultSet.getInt("experience");
+                double salary = resultSet.getDouble("salary");
+                int userID = resultSet.getInt("userID");
+                employees.add(new Employee(id, name, surname, experience, salary, userID));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return employees;
     }
 
     @Override

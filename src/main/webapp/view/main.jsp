@@ -16,6 +16,10 @@
             <input type="hidden" name="action" value="getUsers">
             <button type="submit">Users</button>
         </form>
+        <form id="form" class="form" action="${pageContext.request.contextPath}/employees" method="get">
+            <input type="hidden" name="action" value="getEmployees">
+            <button type="submit">Employees</button>
+        </form>
         <form id="form" class="form" action="${pageContext.request.contextPath}/leadEditors" method="get">
             <input type="hidden" name="action" value="getLeadEditors">
             <button type="submit">Lead Editors</button>
