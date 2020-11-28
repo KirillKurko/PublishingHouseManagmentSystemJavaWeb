@@ -24,5 +24,9 @@
             <input type="hidden" name="action" value="getLeadEditors">
             <button type="submit">Lead Editors</button>
         </form>
+        <form id="form" class="form" action="${pageContext.request.contextPath}/chiefEditors" method="get">
+            <input type="hidden" name="action" value="getChiefEditors">
+            <button type="submit">Chief Editors</button>
+        </form>
     </body>
 </html>

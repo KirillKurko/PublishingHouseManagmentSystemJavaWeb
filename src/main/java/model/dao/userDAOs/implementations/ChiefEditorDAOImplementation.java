@@ -5,12 +5,15 @@ import model.dao.userDAOs.interfaces.ChiefEditorDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
 
     private static final String INSERT_CHIEF_EDITOR = "INSERT INTO ChiefEditor(finishedProjectsAmount, employeeID) VALUES (?, ?);";
     private static final String UPDATE_CHIEF_EDITOR = "UPDATE ChiefEditor SET finishedProjectsAmount = ?, employeeID = ? WHERE id = ?;";
     private static final String SELECT_CHIEF_EDITOR = "SELECT * FROM ChiefEditor WHERE id = ?;";
+    private static final String SELECT_CHIEF_EDITORS = "SELECT * FROM ChiefEditor;";
     private static final String DELETE_CHIEF_EDITOR = "DELETE FROM ChiefEditor WHERE id = ?;";
     private static final String DELETE_CHIEF_EDITOR_BY_EMPLOYEE_ID = "DELETE FROM ChiefEditor WHERE employeeID = ?;";
 
@@ -54,6 +57,7 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
         ChiefEditor chiefEditor = null;
         try (Connection connection = DatabaseUtility.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CHIEF_EDITOR)) {
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int finishedProjectsAmount = resultSet.getInt("finishedProjectsAmount");
@@ -65,6 +69,25 @@ public class ChiefEditorDAOImplementation implements ChiefEditorDAO {
             exception.printStackTrace();
         }
         return chiefEditor;
+    }
+
+    @Override
+    public List<ChiefEditor> selectChiefEditors() {
+        List<ChiefEditor> chiefEditors = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CHIEF_EDITORS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                int finishedProjectsAmount = resultSet.getInt("finishedProjectsAmount");
+                int employeeID =  resultSet.getInt("employeeID");
+                chiefEditors.add(new ChiefEditor(id, finishedProjectsAmount, employeeID));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return chiefEditors;
     }
 
     @Override

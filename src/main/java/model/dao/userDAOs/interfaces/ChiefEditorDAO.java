@@ -2,6 +2,8 @@ package model.dao.userDAOs.interfaces;
 
 import model.beans.employees.employeesImplementations.ChiefEditor;
 
+import java.util.List;
+
 public interface ChiefEditorDAO {
 
     int insertChiefEditor(ChiefEditor chiefEditor);
@@ -9,6 +11,8 @@ public interface ChiefEditorDAO {
     boolean updateChiefEditor(ChiefEditor chiefEditor);
 
     ChiefEditor selectChiefEditor(int id);
+
+    List<ChiefEditor> selectChiefEditors();
 
     boolean deleteChiefEditor(int id);
 

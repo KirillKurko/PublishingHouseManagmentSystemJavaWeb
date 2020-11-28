@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,9 @@
             <input type="hidden" name="caller" value=view/registration/userRegistration.jsp"/>
             <input type="hidden" name="method" value="registerUser"/>
             <button type="submit">Submit</button>
-            <button onclick="location.href='${pageContext.request.contextPath}/index.jsp'">Sign Up</button>
+            <c:if test='${action.equals("registration")}'>
+                <button onclick="location.href='${pageContext.request.contextPath}/index.jsp'">Sign Up</button>
+            </c:if>
         </form>
     </div>
     </body>
