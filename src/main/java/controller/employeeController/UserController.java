@@ -1,5 +1,6 @@
 package controller.employeeController;
 
+import controller.services.EditService;
 import controller.services.RegistrationService;
 import controller.services.employeeServices.UserService;
 import model.beans.employees.User;
@@ -22,12 +23,14 @@ public class UserController extends HttpServlet {
     private UserDAO userDAO;
     private UserService userService;
     private RegistrationService registrationService;
+    private EditService editService;
 
     @Override
     public void init() {
         userDAO = new UserDAOImplementation();
         userService = new UserService();
         registrationService = new RegistrationService();
+        editService = new EditService();
     }
 
     @Override
@@ -75,14 +78,7 @@ public class UserController extends HttpServlet {
     }
 
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String login = request.getParameter("username");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
-        String role = request.getParameter("role");
-        if (Checker.checkUsernameValid(login, id)) {
-            userDAO.updateUser(new User(id, login, password, email, role));
-        }
+        editService.editUser(request, response);
     }
 
     private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -28,5 +28,10 @@
             <input type="hidden" name="action" value="getChiefEditors">
             <button type="submit">Chief Editors</button>
         </form>
+        <hr>
+        <form id="form" class="form" action="${pageContext.request.contextPath}/personalPage" method="get">
+            <input type="hidden" name="action" value="getUser">
+            <button type="submit">Personal Page</button>
+        </form>
     </body>
 </html>

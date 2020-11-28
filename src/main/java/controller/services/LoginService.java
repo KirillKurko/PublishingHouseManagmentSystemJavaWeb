@@ -19,7 +19,6 @@ public class LoginService {
     }
 
     public int getEmployeeId(int userId) {
-        System.out.println("userId: " + userId);
         Employee employee = employeeDAO.selectEmployeeByUserId(userId);
         return employee.getId();
     }

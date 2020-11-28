@@ -1,5 +1,6 @@
 package controller.employeeController;
 
+import controller.services.EditService;
 import controller.services.employeeServices.UserService;
 import model.beans.employees.employeesImplementations.ChiefEditor;
 import model.beans.employees.employeesImplementations.Employee;
@@ -23,12 +24,14 @@ public class ChiefEditorController extends HttpServlet {
     private UserService userService;
     private ChiefEditorDAO chiefEditorDAO;
     private EmployeeDAO employeeDAO;
+    private EditService editService;
 
     @Override
     public void init() {
         userService = new UserService();
         chiefEditorDAO = new ChiefEditorDAOImplementation();
         employeeDAO = new EmployeeDAOImplementation();
+        editService = new EditService();
     }
 
     @Override
@@ -75,9 +78,6 @@ public class ChiefEditorController extends HttpServlet {
     }
 
     private void editChiefEditor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        int finishedProjectsAmount = Integer.parseInt(request.getParameter("finishedProjectsAmount"));
-        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-        chiefEditorDAO.updateChiefEditor(new ChiefEditor(id, finishedProjectsAmount, employeeId));
+        editService.editChiefEditor(request, response);
     }
 }

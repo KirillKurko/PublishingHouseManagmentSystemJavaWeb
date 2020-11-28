@@ -14,6 +14,7 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
     private static final String UPDATE_LEAD_EDITOR = "UPDATE LeadEditor SET finishedProjectsAmount = ?, mainGenre = ?, employeeID = ? WHERE id = ?;";
     private static final String SELECT_LEAD_EDITOR = "SELECT * FROM LeadEditor WHERE id = ?;";
     private static final String SELECT_LEAD_EDITORS = "SELECT * FROM LeadEditor;";
+    private static final String SELECT_LEAD_EDITOR_BY_EMPLOYEE_ID = "SELECT * FROM LeadEditor WHERE employeeID = ?;";
     private static final String DELETE_LEAD_EDITOR = "DELETE FROM LeadEditor WHERE id = ?;";
     private static final String DELETE_LEAD_EDITOR_BY_EMPLOYEE_ID = "DELETE FROM LeadEditor WHERE employeeID = ?;";
 
@@ -94,6 +95,25 @@ public class LeadEditorDAOImplementation implements LeadEditorDAO {
         return leadEditors;
     }
 
+    @Override
+    public LeadEditor selectLeadEditorByEmployeeId(int employeeId) {
+        LeadEditor leadEditor = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LEAD_EDITOR_BY_EMPLOYEE_ID)) {
+            preparedStatement.setInt(1, employeeId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                int finishedProjectsAmount = resultSet.getInt("finishedProjectsAmount");
+                String mainGenre = resultSet.getString("mainGenre");
+                leadEditor = new LeadEditor(id, finishedProjectsAmount, mainGenre, employeeId);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return leadEditor;
+    }
 
     @Override
     public boolean deleteLeadEditor(int id) {

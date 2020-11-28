@@ -1,5 +1,6 @@
 package controller.employeeController;
 
+import controller.services.EditService;
 import controller.services.employeeServices.UserService;
 import model.beans.employees.employeesImplementations.Employee;
 import model.beans.employees.employeesImplementations.LeadEditor;
@@ -23,12 +24,14 @@ public class LeadEditorController extends HttpServlet  {
     private LeadEditorDAO leadEditorDAO;
     private EmployeeDAO employeeDAO;
     private UserService userService;
+    private EditService editService;
 
     @Override
     public void init() {
         leadEditorDAO = new LeadEditorDAOImplementation();
         employeeDAO = new EmployeeDAOImplementation();
         userService = new UserService();
+        editService = new EditService();
     }
 
     @Override
@@ -75,10 +78,6 @@ public class LeadEditorController extends HttpServlet  {
     }
 
     private void editLeadEditor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        int finishedProjectsAmount = Integer.parseInt(request.getParameter("finishedProjectsAmount"));
-        String mainGenre = request.getParameter("mainGenre");
-        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-        leadEditorDAO.updateLeadEditor(new LeadEditor(id, finishedProjectsAmount, mainGenre, employeeId));
+        editService.editLeadEditor(request, response);
     }
 }

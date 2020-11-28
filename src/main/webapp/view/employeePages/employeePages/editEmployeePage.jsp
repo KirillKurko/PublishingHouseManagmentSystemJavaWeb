@@ -3,14 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Edit Employee</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registrationPageStyle.css" type="text/css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script defer src="src/main/webapp/resources/js/registrationPageValidation.js"></script>
 <body>
 <div class="container">
     <div class="header">
-        <h2>Edit User</h2>
+        <h2>Edit Employee</h2>
     </div>
     <form id="form" class="form" action="${pageContext.request.contextPath}/employees" method="post">
         <div class="form-control">

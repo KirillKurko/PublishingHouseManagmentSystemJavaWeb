@@ -1,5 +1,6 @@
 package controller.employeeController;
 
+import controller.services.EditService;
 import controller.services.employeeServices.UserService;
 import model.beans.employees.employeesImplementations.Employee;
 import model.dao.userDAOs.implementations.EmployeeDAOImplementation;
@@ -19,11 +20,13 @@ public class EmployeeController extends HttpServlet {
 
     private EmployeeDAO employeeDAO;
     private UserService userService;
+    private EditService editService;
 
     @Override
     public void init() {
         employeeDAO = new EmployeeDAOImplementation();
         userService = new UserService();
+        editService = new EditService();
     }
 
     @Override
@@ -63,13 +66,7 @@ public class EmployeeController extends HttpServlet {
     }
 
     private void editEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        int experience = Integer.parseInt(request.getParameter("experience"));
-        double salary = Double.parseDouble(request.getParameter("salary"));
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        employeeDAO.updateEmployee(new Employee(id, name, surname, experience, salary, userId));
+        editService.editEmployee(request, response);
     }
 
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+.topnav {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    background-color: #B975D4;
+    overflow: hidden;
+    border-radius: 10px;
+    position: absolute;
+    margin-bottom: 50px;
+    margin-left: 3%;
+    width: 94%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #B975D4;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #B975D4;
+    color: white;
+}
