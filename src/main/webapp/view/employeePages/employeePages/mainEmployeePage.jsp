@@ -4,7 +4,7 @@
     <head>
         <title>Users</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cardStyle.css" type="text/css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/toolbar.css" type="text/css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/toolbarStyles/toolbar.css" type="text/css">
     </head>
     <body>
         <div class="topnav">

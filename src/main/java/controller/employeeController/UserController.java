@@ -1,12 +1,11 @@
 package controller.employeeController;
 
 import controller.services.EditService;
-import controller.services.RegistrationService;
+import controller.services.registrationServices.RegistrationService;
 import controller.services.employeeServices.UserService;
 import model.beans.employees.User;
 import model.dao.userDAOs.implementations.UserDAOImplementation;
 import model.dao.userDAOs.interfaces.UserDAO;
-import utilities.Checker;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

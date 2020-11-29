@@ -1,4 +1,4 @@
-package controller.services;
+package controller.services.registrationServices;
 
 import model.beans.employees.User;
 import model.beans.employees.employeesImplementations.Employee;

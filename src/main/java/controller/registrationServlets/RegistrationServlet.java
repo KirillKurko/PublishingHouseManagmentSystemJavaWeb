@@ -1,6 +1,6 @@
 package controller.registrationServlets;
 
-import controller.services.RegistrationService;
+import controller.services.registrationServices.RegistrationService;
 import model.beans.employees.User;
 import model.beans.employees.employeesImplementations.Employee;
 import javax.servlet.ServletException;

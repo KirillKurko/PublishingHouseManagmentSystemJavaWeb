@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Personal Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/personalPageStyle.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/toolbarPersonalPages.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/toolbarStyles/toolbarPersonalPages.css" type="text/css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>

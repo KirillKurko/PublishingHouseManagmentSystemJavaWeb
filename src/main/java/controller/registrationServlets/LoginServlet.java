@@ -1,6 +1,6 @@
 package controller.registrationServlets;
 
-import controller.services.LoginService;
+import controller.services.registrationServices.LoginService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
