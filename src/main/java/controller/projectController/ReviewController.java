@@ -48,13 +48,14 @@ public class ReviewController extends HttpServlet {
     }
 
     private void getBookReviews(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int bookId = Integer.parseInt(request.getParameter("bookId"));
+        String bookIdString = request.getParameter("bookId");
+        int bookId = bookIdString == null ? (int) request.getAttribute("bookId") : Integer.parseInt(bookIdString);
         List<Review> reviews = reviewDAO.selectReviewsByBookId(bookId);
         request.setAttribute("reviews", reviews);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/projects/books/reviews/bookReviewsPage.jsp");
         requestDispatcher.forward(request, response);
     }
-
+    
     private void addReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int rating = Integer.parseInt(request.getParameter("rating"));
         String description = request.getParameter("description");
@@ -66,7 +67,9 @@ public class ReviewController extends HttpServlet {
             request.setAttribute("bookId", bookId);
             getBookReviews(request, response);
         }
-        getAllReviews(request, response);
+        else {
+            getAllReviews(request, response);
+        }
     }
 
     private void deleteReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
