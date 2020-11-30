@@ -5,6 +5,7 @@ public class Review {
     private int id;
     private int rating;
     private String description;
+    private String bookName;
     private int bookID;
 
     public Review() {
@@ -14,16 +15,18 @@ public class Review {
         bookID = 0;
     }
 
-    public Review(int id, int rating, String description, int bookID) {
+    public Review(int id, int rating, String description, String bookName, int bookID) {
         this.id = id;
         this.rating = rating;
         this.description = description;
+        this.bookName = bookName;
         this.bookID = bookID;
     }
 
-    public Review(int rating, String description, int bookID) {
+    public Review(int rating, String description, String bookName, int bookID) {
         this.rating = rating;
         this.description = description;
+        this.bookName = bookName;
         this.bookID = bookID;
     }
 
@@ -49,6 +52,14 @@ public class Review {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     public int getBookID() {

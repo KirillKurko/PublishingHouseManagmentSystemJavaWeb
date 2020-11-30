@@ -4,6 +4,11 @@ import model.beans.employees.User;
 import model.beans.employees.employeesImplementations.ChiefEditor;
 import model.beans.employees.employeesImplementations.Employee;
 import model.beans.employees.employeesImplementations.LeadEditor;
+import model.beans.project.Book;
+import model.dao.projectDAOs.implementations.BookDAOImplementation;
+import model.dao.projectDAOs.implementations.ReviewDAOImplementation;
+import model.dao.projectDAOs.interfaces.BookDAO;
+import model.dao.projectDAOs.interfaces.ReviewDAO;
 import model.dao.userDAOs.implementations.ChiefEditorDAOImplementation;
 import model.dao.userDAOs.implementations.EmployeeDAOImplementation;
 import model.dao.userDAOs.implementations.LeadEditorDAOImplementation;
@@ -25,12 +30,17 @@ public class EditService {
     private final EmployeeDAO employeeDAO;
     private final LeadEditorDAO leadEditorDAO;
     private final ChiefEditorDAO chiefEditorDAO;
+    private final BookDAO bookDAO;
+    private final ReviewDAO reviewDAO;
 
     public EditService() {
         userDAO = new UserDAOImplementation();
         employeeDAO = new EmployeeDAOImplementation();
         leadEditorDAO = new LeadEditorDAOImplementation();
         chiefEditorDAO = new ChiefEditorDAOImplementation();
+        bookDAO = new BookDAOImplementation();
+        reviewDAO = new ReviewDAOImplementation();
+
     }
 
     public void editUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,5 +79,12 @@ public class EditService {
         chiefEditorDAO.updateChiefEditor(new ChiefEditor(id, finishedProjectsAmount, employeeId));
     }
 
-
+    public void editBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("bookId"));
+        String name = request.getParameter("name");
+        String title = request.getParameter("title");
+        String fileLink = request.getParameter("link");
+        reviewDAO.updateReviewsBookNameByBookId(name, id);
+        bookDAO.updateBook(new Book(id, name, title, fileLink));
+    }
 }

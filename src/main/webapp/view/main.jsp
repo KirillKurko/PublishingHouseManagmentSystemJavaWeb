@@ -37,5 +37,10 @@
             <input type="hidden" name="action" value="getUser">
             <button type="submit">Personal Page</button>
         </form>
+        <hr>
+        <form id="form" class="form" action="${pageContext.request.contextPath}/books" method="get">
+            <input type="hidden" name="action" value="getBooks">
+            <button type="submit">Books</button>
+        </form>
     </body>
 </html>

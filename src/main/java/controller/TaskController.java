@@ -9,6 +9,7 @@ import model.dao.userDAOs.implementations.EmployeeDAOImplementation;
 import model.dao.userDAOs.implementations.UserDAOImplementation;
 import model.dao.userDAOs.interfaces.EmployeeDAO;
 import model.dao.userDAOs.interfaces.UserDAO;
+import utilities.Checker;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -69,8 +70,10 @@ public class TaskController extends HttpServlet  {
         String description = request.getParameter("description");
         String customerName = getCustomerName(request);
         String executorName = request.getParameter("employee");
-        int employeeId = getEmployeeId(executorName);
-        taskDAO.insertTask(new Task(name, description, customerName, executorName, employeeId));
+        if (Checker.checkUsernameExists(executorName)) {
+            int employeeId = getEmployeeId(executorName);
+            taskDAO.insertTask(new Task(name, description, customerName, executorName, employeeId));
+        }
     }
 
     private void finishTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

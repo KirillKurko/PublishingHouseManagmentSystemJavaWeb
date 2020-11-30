@@ -23,20 +23,6 @@ public class BookBeanGettersTests {
     }
 
     @Test
-    public void testGetAuthors() throws NoSuchFieldException, IllegalAccessException {
-
-        final Book book = new Book();
-        final Field authors = book.getClass().getDeclaredField("authors");
-        authors.setAccessible(true);
-
-        ArrayList<Author> authorsArray = new ArrayList<>();
-        authorsArray.add(new Author("1", "1"));
-        authors.set(book, authorsArray);
-
-        assertEquals("field wasn't retrieved properly", book.getAuthors(), authorsArray);
-    }
-
-    @Test
     public void testGetName() throws NoSuchFieldException, IllegalAccessException {
 
         final Book book = new Book();

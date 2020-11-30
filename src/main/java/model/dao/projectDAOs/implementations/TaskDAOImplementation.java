@@ -17,6 +17,7 @@ public class TaskDAOImplementation implements TaskDAO {
     private static final String SELECT_TASK_BY_EMPLOYEE_ID  = "SELECT * FROM Task WHERE employeeID = ?;";
     private static final String SELECT_TASKS  = "SELECT * FROM Task;";
     private static final String DELETE_TASK  = "DELETE FROM Task WHERE id = ?;";
+    private static final String DELETE_TASK_BY_EMPLOYEE_ID  = "DELETE FROM Task WHERE employeeID = ?;";
 
     @Override
     public int insertTask(Task task) {
@@ -159,5 +160,17 @@ public class TaskDAOImplementation implements TaskDAO {
             exception.printStackTrace();
         }
         return rowDeleted;
+    }
+
+    @Override
+    public void deleteTasksByEmployeeId(int employeeId) {
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TASK_BY_EMPLOYEE_ID)) {
+            preparedStatement.setInt(1, employeeId);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 }

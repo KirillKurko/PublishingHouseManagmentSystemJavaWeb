@@ -27,7 +27,7 @@
                 <h2>${task.executorName}</h2>
             </div>
             <div class="course-info">
-                <h2>Task name</h2>
+                <h2>${task.name}</h2>
                 <p>${task.description}</p>
                 <br><br>
                 <form id="finishButton" action="${pageContext.request.contextPath}/tasks" method="get">

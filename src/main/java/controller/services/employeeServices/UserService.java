@@ -1,6 +1,8 @@
 package controller.services.employeeServices;
 
 import model.beans.employees.User;
+import model.dao.projectDAOs.implementations.TaskDAOImplementation;
+import model.dao.projectDAOs.interfaces.TaskDAO;
 import model.dao.userDAOs.implementations.*;
 import model.dao.userDAOs.interfaces.*;
 
@@ -11,6 +13,7 @@ public class UserService {
     private final PublisherDAO publisherDAO;
     private final LeadEditorDAO leadEditorDAO;
     private final ChiefEditorDAO chiefEditorDAO;
+    private final TaskDAO taskDAO;
 
     public UserService() {
         userDAO = new UserDAOImplementation();
@@ -18,6 +21,7 @@ public class UserService {
         publisherDAO = new PublisherDAOImplementation();
         leadEditorDAO = new LeadEditorDAOImplementation();
         chiefEditorDAO = new ChiefEditorDAOImplementation();
+        taskDAO = new TaskDAOImplementation();
     }
 
     public void deleteUser(int id) {
@@ -33,6 +37,7 @@ public class UserService {
         else if (role.equals("leadEditor")) {
             deleteLeadEditorByEmployeeId(employeeId);
         }
+        deleteTasks(employeeId);
         deleteEmployeeByUserId(id);
         userDAO.deleteUser(id);
     }
@@ -53,5 +58,7 @@ public class UserService {
         leadEditorDAO.deleteLeadEditorByEmployeeId(id);
     }
 
-
+    private void deleteTasks(int employeeId) {
+        taskDAO.deleteTasksByEmployeeId(employeeId);
+    }
 }

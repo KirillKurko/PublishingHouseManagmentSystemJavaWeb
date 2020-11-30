@@ -24,20 +24,6 @@ public class BookBeanSettersTests {
     }
 
     @Test
-    public void testSetAuthors() throws NoSuchFieldException, IllegalAccessException {
-
-        final Book book = new Book();
-
-        ArrayList<Author> authorsList = new ArrayList<>();
-        authorsList.add(new Author("1", "1"));
-        book.setAuthors(authorsList);
-
-        final Field authors = book.getClass().getDeclaredField("authors");
-        authors.setAccessible(true);
-        assertEquals("Fields doesn't match", authorsList, authors.get(book));
-    }
-
-    @Test
     public void testSetName() throws NoSuchFieldException, IllegalAccessException {
 
         final Book book = new Book();

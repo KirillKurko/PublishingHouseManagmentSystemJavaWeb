@@ -19,4 +19,6 @@ public interface TaskDAO {
     List<Task> selectTasks();
 
     boolean deleteTask(int id);
+
+    void deleteTasksByEmployeeId(int employeeId);
 }
