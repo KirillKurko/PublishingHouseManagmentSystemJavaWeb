@@ -55,7 +55,7 @@ public class ReviewController extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/projects/books/reviews/bookReviewsPage.jsp");
         requestDispatcher.forward(request, response);
     }
-    
+
     private void addReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int rating = Integer.parseInt(request.getParameter("rating"));
         String description = request.getParameter("description");
