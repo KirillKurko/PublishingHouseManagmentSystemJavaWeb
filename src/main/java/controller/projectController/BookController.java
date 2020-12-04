@@ -1,9 +1,12 @@
 package controller.projectController;
 
 import controller.services.EditService;
+import controller.services.projectServices.AuthorService;
 import model.beans.project.Book;
 import model.dao.projectDAOs.implementations.BookDAOImplementation;
+import model.dao.projectDAOs.implementations.ReviewDAOImplementation;
 import model.dao.projectDAOs.interfaces.BookDAO;
+import model.dao.projectDAOs.interfaces.ReviewDAO;
 import utilities.Checker;
 
 import javax.servlet.RequestDispatcher;
@@ -20,11 +23,15 @@ public class BookController extends HttpServlet {
 
     private BookDAO bookDAO;
     private EditService editService;
+    private ReviewDAO reviewDAO;
+    private AuthorService authorService;
 
     @Override
     public void init() {
         bookDAO = new BookDAOImplementation();
         editService = new EditService();
+        reviewDAO = new ReviewDAOImplementation();
+        authorService = new AuthorService();
     }
 
     @Override
@@ -44,6 +51,9 @@ public class BookController extends HttpServlet {
                 editBook(request, response);
                 getBooks(request, response);
                 break;
+            case "deleteBook":
+                deleteBook(request, response);
+                getBooks(request, response);
         }
     }
 
@@ -73,5 +83,12 @@ public class BookController extends HttpServlet {
 
     private void editBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         editService.editBook(request, response);
+    }
+
+    private void deleteBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int bookId = Integer.parseInt(request.getParameter("bookId"));
+        reviewDAO.deleteReviewByBookId(bookId);
+        authorService.deleteBookAuthors(bookId);
+        bookDAO.deleteBook(bookId);
     }
 }

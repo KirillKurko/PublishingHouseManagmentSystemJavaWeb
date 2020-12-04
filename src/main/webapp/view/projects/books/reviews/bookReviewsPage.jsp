@@ -10,6 +10,7 @@
 <div class="topnav">
     <a class="active" href="${pageContext.request.contextPath}/view/main.jsp">Home</a>
     <a class="active" href="${pageContext.request.contextPath}/view/projects/books/reviews/addReviewPage.jsp">Add</a>
+    <a class="active" href="${pageContext.request.contextPath}/reviews?action=getAllReviews">All</a>
     <a class="active" style="float:right" href="${pageContext.request.contextPath}/books?action=getBooks">Back</a>
 </div>
 <br><br><br>

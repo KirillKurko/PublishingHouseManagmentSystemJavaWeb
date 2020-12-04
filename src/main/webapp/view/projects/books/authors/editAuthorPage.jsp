@@ -9,31 +9,24 @@
 <body>
 <div class="container">
     <div class="header">
-        <h2>Add Author</h2>
+        <h2>Edit Author</h2>
     </div>
     <form id="form" class="form" action="${pageContext.request.contextPath}/authors" method="post">
         <div class="form-control">
             <label for="name">Name</label>
-            <input type="text" placeholder="Name" name="name" id="name" />
+            <input type="text" placeholder="Name" name="name" id="name" value="${author.name}"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
         <div class="form-control">
             <label for="surname">Surname</label>
-            <input type="text" placeholder="Surname" name="surname" id="surname" />
+            <input type="text" placeholder="Surname" name="surname" id="surname" value="${author.surname}"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
-        <div class="form-control">
-            <label for="bookName">Book Name</label>
-            <input type="text" placeholder="Book Name" name="bookName" id="bookName" />
-            <i class="fas fa-check-circle"></i>
-            <i class="fas fa-exclamation-circle"></i>
-            <small>Error message</small>
-        </div>
-        <input type="hidden" name="action" value="addAuthor"/>
+        <input type="hidden" name="action" value="editAuthor"/>
         <button type="submit">Add</button>
     </form>
 </div>

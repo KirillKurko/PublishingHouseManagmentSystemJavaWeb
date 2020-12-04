@@ -10,6 +10,7 @@
 <div class="topnav">
     <a class="active" href="${pageContext.request.contextPath}/view/main.jsp">Home</a>
     <a class="active" href="${pageContext.request.contextPath}/view/projects/books/addBookPage.jsp">Add</a>
+    <a class="active" style="float: right" href="${pageContext.request.contextPath}/view/main.jsp">Back</a>
 </div>
 <br><br><br>
 <div class="container center">
@@ -18,7 +19,7 @@
             <h2>${book.name}</h2>
             <hr>
             <p>${book.title}</p>
-            <p><a href="${book.fileLink}">Text</a></p>
+            <p><a style="text-decoration: none; font: inherit; color: black" href="${book.fileLink}">Text</a></p>
             <br>
             <form id="reviewsForm" class="form" action="${pageContext.request.contextPath}/reviews" method="get">
                 <input type="hidden" name="bookId" value="${book.id}">

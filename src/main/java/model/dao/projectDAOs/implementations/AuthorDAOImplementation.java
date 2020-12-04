@@ -5,12 +5,15 @@ import model.dao.projectDAOs.interfaces.AuthorDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthorDAOImplementation implements AuthorDAO {
 
     private static final String INSERT_AUTHOR = "INSERT INTO Author(name, surname) VALUES (?, ?);";
     private static final String UPDATE_AUTHOR  = "UPDATE Author SET name = ?, surname = ? WHERE id = ?;";
     private static final String SELECT_AUTHOR  = "SELECT * FROM Author WHERE id = ?;";
+    private static final String SELECT_AUTHOR_BY_BOOK_ID = "SELECT * FROM Author LEFT JOIN BooksAuthors ON Author.ID = BooksAuthors.authorID WHERE BooksAuthors.bookID = ?;";
     private static final String DELETE_AUTHOR  = "DELETE FROM Author WHERE id = ?;";
 
     @Override
@@ -65,6 +68,26 @@ public class AuthorDAOImplementation implements AuthorDAO {
             exception.printStackTrace();
         }
         return author;
+    }
+
+    @Override
+    public List<Author> selectAuthorsByBookId(int bookId) {
+        List<Author> authors = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_AUTHOR_BY_BOOK_ID)) {
+            preparedStatement.setInt(1, bookId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("name");
+                String surname = resultSet.getString("surname");
+                authors.add(new Author(id, name, surname));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return authors;
     }
 
     @Override
