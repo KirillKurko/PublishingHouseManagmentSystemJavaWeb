@@ -10,29 +10,28 @@
         <title>Register</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registrationPageStyle.css" type="text/css">
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-        <script defer src="resources/js/registrationPageValidation.js"></script>
     <body>
     <div class="container">
         <div class="header">
-            <h2><fmt:message key="index.signUp" /></h2>
+            <h2>Sign Up</h2>
         </div>
         <form id="form" class="form" action="${pageContext.request.contextPath}/login" method="post">
             <div class="form-control">
-                <label for="username"><fmt:message key="index.username" /></label>
+                <label for="username">Username</label>
                 <input type="text" placeholder="Username" name="username" id="username" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <label for="password"><fmt:message key="index.password" /></label>
+                <label for="password">Password</label>
                 <input type="password" placeholder="Password" name="password" id="password"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
-            <button type="submit"><fmt:message key="index.submit" /></button>
-            <button onclick="location.href='${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=registration'"><fmt:message key="index.login" /></button>
+            <button type="submit">Sign Up</button>
+            <button onclick="location.href='${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=registration'">Login</button>
         </form>
     </div>
     </body>

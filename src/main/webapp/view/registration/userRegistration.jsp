@@ -7,7 +7,6 @@
         <title>Register</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registrationPageStyle.css" type="text/css">
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-        <script defer src="${pageContext.request.contextPath}/resources/js/registrationPageValidation.js"></script>
     <body>
     <div class="container">
         <div class="header">
