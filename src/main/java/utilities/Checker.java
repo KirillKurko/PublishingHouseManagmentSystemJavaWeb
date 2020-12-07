@@ -26,4 +26,9 @@ public class Checker {
         Book book = bookDAO.selectBookByName(name);
         return book == null;
     }
+
+    public static boolean checkBookNameExists(String name) {
+        Book book = bookDAO.selectBookByName(name);
+        return book != null;
+    }
 }

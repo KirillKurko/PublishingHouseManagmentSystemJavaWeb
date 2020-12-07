@@ -9,8 +9,10 @@
 <body>
 <div class="topnav">
     <a class="active" href="${pageContext.request.contextPath}/view/main.jsp">Home</a>
-    <a class="active" href="${pageContext.request.contextPath}/view/tasks/addTaskPage.jsp">Add</a>
-    <a class="active" href="${pageContext.request.contextPath}/tasks?action=getTasks">All</a>
+    <c:if test='${!sessionScope.role.equals("employee")}'>
+        <a class="active" href="${pageContext.request.contextPath}/view/tasks/addTaskPage.jsp">Add</a>
+        <a class="active" href="${pageContext.request.contextPath}/tasks?action=getTasks">All</a>
+    </c:if>
     <a class="active" href="${pageContext.request.contextPath}/tasks?action=getAppointedTasks">Appointed</a>
     <a class="active" href="${pageContext.request.contextPath}/tasks?action=getReceivedTasks">Received</a>
     <a class="active" style="float:right" href="${pageContext.request.contextPath}/login">Logout</a>

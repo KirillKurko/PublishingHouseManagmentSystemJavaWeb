@@ -5,12 +5,15 @@ import model.dao.userDAOs.interfaces.PublisherDAO;
 import utilities.DatabaseUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PublisherDAOImplementation implements PublisherDAO  {
 
     private static final String INSERT_PUBLISHER = "INSERT INTO Publisher(finances, employeeID) VALUES (?, ?);";
     private static final String UPDATE_PUBLISHER = "UPDATE Publisher SET finances = ?, employeeID = ? WHERE id = ?;";
     private static final String SELECT_PUBLISHER = "SELECT * FROM Publisher WHERE id = ?;";
+    private static final String SELECT_PUBLISHERS = "SELECT * FROM Publisher;";
     private static final String DELETE_PUBLISHER = "DELETE FROM Publisher WHERE id = ?;";
     private static final String DELETE_PUBLISHER_BY_EMPLOYEE_ID = "DELETE FROM Publisher WHERE employeeID = ?;";
 
@@ -66,6 +69,25 @@ public class PublisherDAOImplementation implements PublisherDAO  {
             exception.printStackTrace();
         }
         return publisher;
+    }
+
+    @Override
+    public List<Publisher> selectPublishers() {
+        List<Publisher> publishers = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PUBLISHERS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                double finances = resultSet.getDouble("finances");
+                int employeeId = resultSet.getInt("employeeID");
+                publishers.add(new Publisher(id, finances, employeeId));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return publishers;
     }
 
     @Override

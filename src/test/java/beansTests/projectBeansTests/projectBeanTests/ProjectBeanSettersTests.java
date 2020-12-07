@@ -58,30 +58,4 @@ public class ProjectBeanSettersTests {
         booksAmount.setAccessible(true);
         assertEquals("Fields doesn't match", booksAmount.get(project), 100);
     }
-
-    @Test
-    public void testSetLeadEditor() throws NoSuchFieldException, IllegalAccessException {
-
-        final Project project = new Project();
-
-        LeadEditor leadEditor = new LeadEditor();
-        project.setLeadEditor(leadEditor);
-
-        final Field leadEditorValue = project.getClass().getDeclaredField("leadEditor");
-        leadEditorValue.setAccessible(true);
-        assertEquals("Fields doesn't match", leadEditorValue.get(project), leadEditor);
-    }
-
-    @Test
-    public void testSetBook() throws NoSuchFieldException, IllegalAccessException {
-
-        final Project project = new Project();
-
-        Book book = new Book();
-        project.setBook(book);
-
-        final Field bookValue = project.getClass().getDeclaredField("book");
-        bookValue.setAccessible(true);
-        assertEquals("Fields doesn't match", bookValue.get(project), book);
-    }
 }

@@ -54,28 +54,4 @@ public class ProjectBeanGettersTests {
 
         assertEquals("field wasn't retrieved properly", project.getBooksAmount(), 100);
     }
-
-    @Test
-    public void testGetLeadEditor() throws NoSuchFieldException, IllegalAccessException {
-
-        final Project project = new Project();
-        final Field leadEditor = project.getClass().getDeclaredField("leadEditor");
-        leadEditor.setAccessible(true);
-        LeadEditor leadEditorValue = new LeadEditor();
-        leadEditor.set(project, leadEditorValue);
-
-        assertEquals("field wasn't retrieved properly", project.getLeadEditor(), leadEditorValue);
-    }
-
-    @Test
-    public void testGetBook() throws NoSuchFieldException, IllegalAccessException {
-
-        final Project project = new Project();
-        final Field book = project.getClass().getDeclaredField("book");
-        book.setAccessible(true);
-        Book bookValue = new Book();
-        book.set(project, bookValue);
-
-        assertEquals("field wasn't retrieved properly", project.getBook(), bookValue);
-    }
 }

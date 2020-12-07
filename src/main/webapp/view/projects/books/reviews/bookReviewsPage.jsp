@@ -25,12 +25,14 @@
                 <h2>Rating: ${review.rating}</h2>
                 <p>${review.description}</p>
                 <br><br>
-                <form id="finishButton" action="${pageContext.request.contextPath}/reviews" method="get">
-                    <input type="hidden" name="reviewId" value="${review.id}">
-                    <input type="hidden" name="bookId" value="${review.bookID}">
-                    <input type="hidden" name="action" value="deleteReview">
-                    <button type="submit" class="btn">Delete</button>
-                </form>
+                <c:if test='${!sessionScope.role.equals("employee")}'>
+                    <form id="finishButton" action="${pageContext.request.contextPath}/reviews" method="get">
+                        <input type="hidden" name="reviewId" value="${review.id}">
+                        <input type="hidden" name="bookId" value="${review.bookID}">
+                        <input type="hidden" name="action" value="deleteReview">
+                        <button type="submit" class="btn">Delete</button>
+                    </form>
+                </c:if>
             </div>
         </div>
     </c:forEach>

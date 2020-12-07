@@ -9,8 +9,10 @@
 <body>
 <div class="topnav">
     <a class="active" href="${pageContext.request.contextPath}/view/main.jsp">Home</a>
-    <a class="active" href="${pageContext.request.contextPath}/view/projects/books/authors/addAuthorPage.jsp">Add</a>
-    <a class="active" style="float: right" href="${pageContext.request.contextPath}/view/main.jsp">Back</a>
+    <c:if test='${sessionScope.role.equals("publisher")}'>
+        <a class="active" href="${pageContext.request.contextPath}/view/projects/books/authors/addAuthorPage.jsp">Add</a>
+    </c:if>
+    <a class="active" style="float: right" href="${pageContext.request.contextPath}/books?action=getBooks">Back</a>
 </div>
 <br><br><br>
 <div class="container center">
@@ -20,16 +22,18 @@
             <hr>
             <p>${author.surname}</p>
             <br>
-            <form id="editForm" class="form" action="${pageContext.request.contextPath}/authors" method="get">
-                <input type="hidden" name="authorId" value="${author.id}">
-                <input type="hidden" name="action" value="getAuthor">
-                <button type="submit">Edit</button>
-            </form>
-            <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/authors" method="get">
-                <input type="hidden" name="authorId" value="${author.id}">
-                <input type="hidden" name="action" value="deleteAuthor">
-                <button type="submit">Delete</button>
-            </form>
+            <c:if test='${sessionScope.role.equals("publisher")}'>
+                <form id="editForm" class="form" action="${pageContext.request.contextPath}/authors" method="get">
+                    <input type="hidden" name="authorId" value="${author.id}">
+                    <input type="hidden" name="action" value="getAuthor">
+                    <button type="submit">Edit</button>
+                </form>
+                <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/authors" method="get">
+                    <input type="hidden" name="authorId" value="${author.id}">
+                    <input type="hidden" name="action" value="deleteAuthor">
+                    <button type="submit">Delete</button>
+                </form>
+            </c:if>
         </div>
     </c:forEach>
 </div>

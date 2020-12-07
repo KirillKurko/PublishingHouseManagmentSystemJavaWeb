@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -10,25 +14,25 @@
     <body>
     <div class="container">
         <div class="header">
-            <h2>Sign Up</h2>
+            <h2><fmt:message key="index.signUp" /></h2>
         </div>
         <form id="form" class="form" action="${pageContext.request.contextPath}/login" method="post">
             <div class="form-control">
-                <label for="username">Username</label>
+                <label for="username"><fmt:message key="index.username" /></label>
                 <input type="text" placeholder="Username" name="username" id="username" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <label for="password">Password</label>
+                <label for="password"><fmt:message key="index.password" /></label>
                 <input type="password" placeholder="Password" name="password" id="password"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
-            <button type="submit">Submit</button>
-            <button onclick="location.href='${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=registration'">Login</button>
+            <button type="submit"><fmt:message key="index.submit" /></button>
+            <button onclick="location.href='${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=registration'"><fmt:message key="index.login" /></button>
         </form>
     </div>
     </body>

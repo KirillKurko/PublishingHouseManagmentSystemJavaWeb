@@ -9,7 +9,9 @@
     <body>
         <div class="topnav">
             <a class="active" href="${pageContext.request.contextPath}/view/main.jsp">Home</a>
-            <a class="active" href="${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=add">Add</a>
+            <c:if test='${sessionScope.role.equals("publisher") || sessionScope.role.equals("chiefEditor")}'>
+                <a class="active" href="${pageContext.request.contextPath}/view/registration/userRegistration.jsp?action=add">Add</a>
+            </c:if>
             <a class="active" style="float:right" href="${pageContext.request.contextPath}/login">Logout</a>
         </div>
         <br><br><br>
@@ -22,16 +24,20 @@
                     <p>Experience: ${employee.experience}</p>
                     <p>Salary: ${employee.salary}</p>
                     <br>
-                    <form id="editForm" class="form" action="${pageContext.request.contextPath}/employees" method="get">
-                        <input type="hidden" name="employeeId" value="${employee.id}">
-                        <input type="hidden" name="action" value="getEmployee">
-                        <button type="submit">Edit</button>
-                    </form>
-                    <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/employees" method="get">
-                        <input type="hidden" name="userId" value="${employee.userID}">
-                        <input type="hidden" name="action" value="deleteEmployee">
-                        <button type="submit">Delete</button>
-                    </form>
+                    <c:if test='${sessionScope.role.equals("publisher") || sessionScope.role.equals("chiefEditor")}'>
+                        <form id="editForm" class="form" action="${pageContext.request.contextPath}/employees" method="get">
+                            <input type="hidden" name="employeeId" value="${employee.id}">
+                            <input type="hidden" name="action" value="getEmployee">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </c:if>
+                    <c:if test='${sessionScope.role.equals("publisher")}'>
+                        <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/employees" method="get">
+                            <input type="hidden" name="userId" value="${employee.userID}">
+                            <input type="hidden" name="action" value="deleteEmployee">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </c:if>
                 </div>
             </c:forEach>
         </div>

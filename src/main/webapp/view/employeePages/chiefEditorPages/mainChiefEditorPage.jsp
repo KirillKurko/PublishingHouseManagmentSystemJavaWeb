@@ -19,17 +19,19 @@
             <hr>
             <p>Finished Projects: ${chiefEditor.finishedProjectsAmount}</p>
             <br>
-            <form id="editForm" class="form" action="${pageContext.request.contextPath}/chiefEditors" method="get">
-                <input type="hidden" name="chiefEditorId" value="${chiefEditor.id}">
-                <input type="hidden" name="action" value="getChiefEditor">
-                <button type="submit">Edit</button>
-            </form>
-            <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/chiefEditors" method="get">
-                <input type="hidden" name="chiefEditorId" value="${chiefEditor.id}">
-                <input type="hidden" name="employeeId" value="${chiefEditor.employeeID}">
-                <input type="hidden" name="action" value="deleteChiefEditor">
-                <button type="submit">Delete</button>
-            </form>
+            <c:if test='${sessionScope.role.equlas("publisher")}'>
+                <form id="editForm" class="form" action="${pageContext.request.contextPath}/chiefEditors" method="get">
+                    <input type="hidden" name="chiefEditorId" value="${chiefEditor.id}">
+                    <input type="hidden" name="action" value="getChiefEditor">
+                    <button type="submit">Edit</button>
+                </form>
+                <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/chiefEditors" method="get">
+                    <input type="hidden" name="chiefEditorId" value="${chiefEditor.id}">
+                    <input type="hidden" name="employeeId" value="${chiefEditor.employeeID}">
+                    <input type="hidden" name="action" value="deleteChiefEditor">
+                    <button type="submit">Delete</button>
+                </form>
+            </c:if>
         </div>
     </c:forEach>
 </div>

@@ -12,6 +12,8 @@ public interface AuthorDAO {
 
     Author selectAuthor(int id);
 
+    List<Author> selectAuthors();
+
     List<Author> selectAuthorsByBookId(int bookId);
 
     boolean deleteAuthor(int id);

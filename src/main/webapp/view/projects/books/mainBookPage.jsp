@@ -9,7 +9,10 @@
 <body>
 <div class="topnav">
     <a class="active" href="${pageContext.request.contextPath}/view/main.jsp">Home</a>
-    <a class="active" href="${pageContext.request.contextPath}/view/projects/books/addBookPage.jsp">Add</a>
+    <c:if test='${!sessionScope.role.equals("employee")}'>
+        <a class="active" href="${pageContext.request.contextPath}/view/projects/books/addBookPage.jsp">Add</a>
+    </c:if>
+    <a class="active" href="${pageContext.request.contextPath}/authors?action=getAuthors">Authors</a>
     <a class="active" style="float: right" href="${pageContext.request.contextPath}/view/main.jsp">Back</a>
 </div>
 <br><br><br>
@@ -31,11 +34,13 @@
                 <input type="hidden" name="action" value="getBook">
                 <button type="submit">Edit</button>
             </form>
-            <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/books" method="get">
-                <input type="hidden" name="bookId" value="${book.id}">
-                <input type="hidden" name="action" value="deleteBook">
-                <button type="submit">Delete</button>
-            </form>
+            <c:if test='${sessionScope.role.equals("publisher") || sessionScope.role.equals("chiefEditor")}'>
+                <form id="deleteForm" class="form" action="${pageContext.request.contextPath}/books" method="get">
+                    <input type="hidden" name="bookId" value="${book.id}">
+                    <input type="hidden" name="action" value="deleteBook">
+                    <button type="submit">Delete</button>
+                </form>
+            </c:if>
         </div>
     </c:forEach>
 </div>

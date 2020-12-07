@@ -31,25 +31,25 @@ public class AuthorController extends HttpServlet {
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String method = request.getParameter("method");
+        String method = request.getParameter("action");
         switch (method) {
             case "addAuthor":
                 addAuthor(request, response);
-                getBookAuthors(request, response);
+                getAuthors(request, response);
                 break;
             case "deleteAuthor":
                 deleteAuthor(request, response);
-                getBookAuthors(request, response);
+                getAuthors(request, response);
                 break;
             case "editAuthor":
                 editAuthor(request, response);
-                getBookAuthors(request, response);
+                getAuthors(request, response);
                 break;
             case "getAuthor":
                 getAuthor(request, response);
                 break;
-            case "getBookAuthors":
-                getBookAuthors(request, response);
+            case "getAuthors":
+                getAuthors(request, response);
                 break;
         }
     }
@@ -79,9 +79,8 @@ public class AuthorController extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void getBookAuthors(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int bookId = Integer.parseInt(request.getParameter("bookId"));
-        List<Author> authors = authorDAO.selectAuthorsByBookId(bookId);
+    private void getAuthors(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Author> authors = authorDAO.selectAuthors();
         request.setAttribute("authors", authors);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/projects/books/authors/mainAuthorPage.jsp");
         requestDispatcher.forward(request, response);
